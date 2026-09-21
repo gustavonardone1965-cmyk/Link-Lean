@@ -53,11 +53,14 @@ body[data-print] #tpl-a3 th{padding:2px 6px;font-size:10px}body[data-print] #tpl
 body[data-print] #tpl-a3 .sec p,body[data-print] #tpl-a3 .top p{font-size:10.5px}body[data-print] .tpl .hint{font-size:9.5px}body[data-print] .why .ln:before{font-size:.95em}
 body[data-print] .tpl{break-inside:avoid}body[data-print] #tpl-ish .ln{min-height:1.9em}
 [contenteditable]{background:none!important}@page{size:A4 landscape;margin:8mm}}
-</style></head><body><main>
+.sitebar{background:#0b2242;padding:8px 16px}.sitenav{display:flex;gap:8px;flex-wrap:wrap;max-width:1080px;margin:0 auto}.sn{display:inline-block;padding:8px 14px;border-radius:8px;background:#e8eef7;color:#0b2242;text-decoration:none;font-size:13px;font-weight:700;border:2px solid transparent}.sn.on{background:#174ea6;color:#fff}.sn:hover{border-color:#f59e0b}.sn:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}.bottomnav{margin-top:44px;display:flex;gap:10px;flex-wrap:wrap}.bottomnav .sn{background:#0b2242;color:#fff}@media(max-width:760px){.fld{display:block;min-width:0!important;width:100%;margin:4px 0!important}.tpl{overflow-x:auto}}@media print{.sitebar,.bottomnav{display:none}}
+</style></head><body>
+<div class="sitebar"><div class="sitenav" role="navigation" aria-label="Navegación entre archivos"><a class="sn on" href="index.html" aria-current="page">Inicio: casos A3 e Ishikawa (index.html)</a><a class="sn" href="plantilla.html">Plantilla Lean + laboratorio de datos (plantilla.html) →</a></div></div>
+<main>
 <h1>Cómo resolver un problema con A3 y con Ishikawa</h1>
 <p class="mut">Dos casos reales de la franquicia Grido Vélez Sarsfield (bitácora semanas 1–4 y tablero Kaizen), explicados desde cero para que el equipo pueda repetirlos con otros problemas.</p>
 <p><span class="t b">Bitácora</span> dato que figura en la bitácora o el tablero &nbsp; <span class="t h">Hipótesis</span> posible causa que hay que verificar en el lugar &nbsp; <span class="t p">Propuesta</span> sugerencia para validar con el equipo</p>
-<nav><a href="#cuando">¿Cuál herramienta uso?</a><a href="#a3">Caso A3: apps de delivery</a><a href="#ish">Caso Ishikawa: errores de sabor</a><a href="#plantillas">Plantillas para imprimir</a></nav>
+<nav><a href="#cuando">¿Cuál herramienta uso?</a><a href="#a3">Caso A3: apps de delivery</a><a href="#ish">Caso Ishikawa: errores de sabor</a><a href="#plantillas">Plantillas para imprimir</a><a href="plantilla.html">Ir a plantilla.html →</a></nav>
 
 <h2 id="cuando">¿Cuál herramienta uso y por qué elegimos estos casos?</h2>
 <div class="two">
@@ -208,6 +211,7 @@ body[data-print] .tpl{break-inside:avoid}body[data-print] #tpl-ish .ln{min-heigh
 <table><thead><tr><th style="width:30%">Causa (más votadas)</th><th style="width:7%">Votos</th><th>¿Cómo se verifica?</th><th>Contramedida</th><th style="width:11%">Quién</th><th style="width:9%">Cuándo</th></tr></thead><tbody data-r="4" data-c="6"></tbody></table>
 </div>
 </section>
+<div class="bottomnav"><a class="sn" href="plantilla.html">Continuar con la plantilla Lean + laboratorio de datos (plantilla.html) →</a> <a class="sn" href="#">Ir al inicio de esta página</a></div>
 </main><script>
 document.querySelectorAll('[data-n]').forEach(function(e){for(var i=0;i<e.dataset.n;i++){var d=document.createElement('div');d.className='ln';d.contentEditable='true';e.appendChild(d)}});
 document.querySelectorAll('tbody[data-r]').forEach(function(t){for(var i=0;i<t.dataset.r;i++){var r=t.insertRow();for(var j=0;j<t.dataset.c;j++){var c=r.insertCell();c.className='cell';c.contentEditable='true'}}});
