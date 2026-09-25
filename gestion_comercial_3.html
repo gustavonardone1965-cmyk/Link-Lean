@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="flex items-center space-x-3 mt-2 sm:mt-0">
-                <!-- Botón de Regreso a index.html agregado -->
+                <!-- Botón de Regreso a index.html -->
                 <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 px-3 py-2 rounded-md font-bold transition shadow flex items-center gap-1.5 border border-slate-700">
                     <i class="fa-solid fa-arrow-left"></i>
                     Volver al Índice
@@ -103,15 +103,15 @@
             </div>
         </div>
         
-        <!-- Barra de Filtros Globales -->
+        <!-- Barra de Filtros Globales (Campo Unificado: Código - Nombre - Ciudad) -->
         <div class="bg-slate-800 border-t border-slate-700 px-4 py-2">
             <div class="max-w-7xl mx-auto flex flex-wrap gap-4 items-center text-xs text-slate-300">
                 <div class="flex items-center space-x-2">
-                    <label class="font-semibold text-slate-400">Punto de Venta:</label>
+                    <label class="font-semibold text-slate-400">Franquicia (Código - Nombre - Ciudad):</label>
                     <select id="selectFranquicia" onchange="alCambiarFranquicia()" class="bg-slate-700 text-white rounded px-2.5 py-1 border border-slate-600 focus:outline-none focus:border-blue-500 font-medium">
-                        <option value="GRI-1042">Grido 1042 - Córdoba Centro</option>
-                        <option value="GRI-2058">Grido 2058 - Salta Capital</option>
-                        <option value="GRI-3112">Grido 3112 - Buenos Aires Norte</option>
+                        <option value="GRI-1042">GRI-1042 - Grido 1042 - Córdoba Centro (Córdoba)</option>
+                        <option value="GRI-2058">GRI-2058 - Grido 2058 - Salta Capital (Salta)</option>
+                        <option value="GRI-3112">GRI-3112 - Grido 3112 - Buenos Aires Norte (Buenos Aires)</option>
                         <option value="GRI-CUSTOM" id="optCustomFranq" disabled>Grido (Excel/CSV Importado)</option>
                     </select>
                 </div>
@@ -261,7 +261,7 @@
                 <div class="flex justify-between items-center border-b pb-3 mb-4">
                     <div>
                         <h2 class="text-base font-bold text-slate-800">Módulo de Carga e Ingesta de Datos Primarios Atómicos</h2>
-                        <p class="text-xs text-slate-500">Suba su planilla contable con variables brutas. El artefacto calculará autónomamente el EBITDA.</p>
+                        <p class="text-xs text-slate-500">Suba su planilla contable con variables brutas y el campo unificado de Franquicia (Código - Nombre - Ciudad). El artefacto calculará autónomamente el EBITDA.</p>
                     </div>
                     <button onclick="descargarPlantilla()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3 py-2 rounded-md font-semibold transition flex items-center gap-1.5">
                         <i class="fa-solid fa-file-excel"></i>
@@ -271,7 +271,7 @@
 
                 <div id="dropZone" class="border-2 border-dashed border-blue-300 rounded-xl p-8 text-center bg-blue-50/40 hover:bg-blue-50 transition cursor-pointer" onclick="document.getElementById('fileInput').click()">
                     <i class="fa-solid fa-cloud-arrow-up text-4xl text-blue-500 mb-3 block"></i>
-                    <p class="text-sm font-bold text-slate-700 mb-1">Arrastre su archivo Excel (.xlsx / .xls) o CSV con variables primarias</p>
+                    <p class="text-sm font-bold text-slate-700 mb-1">Arrastre su archivo Excel (.xlsx / .xls) o CSV con el campo unificado de Franquicia</p>
                     <input type="file" id="fileInput" accept=".xlsx, .xls, .csv" class="hidden" onchange="procesarArchivoExcel(event)">
                     <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow mt-2">
                         Seleccionar Archivo Excel
@@ -294,8 +294,7 @@
                                     <th colspan="2" class="bg-emerald-200 text-emerald-900 py-1">CALCULADO AUTÓNOMAMENTE POR ARTEFACTO</th>
                                 </tr>
                                 <tr class="bg-slate-100 border-b text-slate-700 font-semibold uppercase sticky top-0">
-                                    <th class="p-2 border-r">Cód. Franq</th>
-                                    <th class="p-2 border-r">Nombre Franquicia</th>
+                                    <th class="p-2 border-r">Franquicia (Código - Nombre - Ciudad)</th>
                                     <th class="p-2 border-r">Período</th>
                                     <th class="p-2 border-r">Ventas ($)</th>
                                     <th class="p-2 border-r">Volumen (Kg)</th>
@@ -315,7 +314,7 @@
                             </thead>
                             <tbody id="tablaPrevisualización" class="divide-y font-mono text-slate-600">
                                 <tr>
-                                    <td colspan="17" class="p-4 text-center text-slate-400 font-sans">No se ha cargado ningún archivo personalizado aún. Mostrando base predeterminada.</td>
+                                    <td colspan="16" class="p-4 text-center text-slate-400 font-sans">No se ha cargado ningún archivo personalizado aún. Mostrando base predeterminada.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -861,7 +860,7 @@
             </div>
         </section>
 
-        <!-- MÓDULO 09: API DEL CLIMA (ACTUALIZADO CON PRONÓSTICO A 10 DÍAS) -->
+        <!-- MÓDULO 09: API DEL CLIMA (ACTUALIZADO CON RECUADROS EDITABLES DE LAT/LON Y PRONÓSTICO A 10 DÍAS) -->
         <section id="mod-clima" class="hidden space-y-6">
             <div class="bg-white p-6 rounded-xl border border-slate-200 card-shadow space-y-4">
                 <div class="flex justify-between items-center border-b pb-3 mb-4 flex-wrap gap-2">
@@ -874,6 +873,34 @@
                     </button>
                 </div>
                 
+                <!-- NUEVO BLOQUE: RECUADROS EDITABLES DE LATITUD Y LONGITUD (PRIORIDAD AL TIPIFICADO) -->
+                <div class="bg-blue-50/60 border border-blue-200 p-4 rounded-xl shadow-sm space-y-3">
+                    <div class="flex items-center justify-between border-b border-blue-200 pb-2">
+                        <h3 class="text-xs font-bold text-blue-900 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-crosshairs text-blue-600"></i> Coordenadas Geográficas Específicas (Prioridad Opcional)
+                        </h3>
+                        <span class="text-[10px] bg-blue-200 text-blue-800 font-bold px-2 py-0.5 rounded">Alta Precisión</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Latitud Específica:</label>
+                            <input id="inputLatClima" type="number" step="any" placeholder="Ej: -31.4135" class="w-full border border-blue-300 rounded p-2 text-xs font-mono bg-white focus:ring-2 focus:ring-blue-500" oninput="consultarClimaFranquicia()">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Longitud Específica:</label>
+                            <input id="inputLonClima" type="number" step="any" placeholder="Ej: -64.1810" class="w-full border border-blue-300 rounded p-2 text-xs font-mono bg-white focus:ring-2 focus:ring-blue-500" oninput="consultarClimaFranquicia()">
+                        </div>
+                        <div class="flex items-end pt-1 sm:pt-6">
+                            <button onclick="limpiarCoordenadasClima()" class="w-full bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 text-xs px-3 py-2 rounded font-bold transition shadow-sm flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-rotate-left text-blue-600"></i> Usar Localidad Filtrada
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-600 italic">
+                        * Si los campos están vacíos, la API toma por defecto la latitud y longitud de la sucursal seleccionada en el filtro global. Si tipea coordenadas específicas, estas tienen máxima prioridad.
+                    </p>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl text-center shadow-sm">
                         <p class="text-xs font-bold text-blue-700 uppercase">Temperatura Actual</p>
@@ -906,29 +933,32 @@
 
                 <div class="p-4 bg-slate-900 text-slate-100 rounded-xl text-xs space-y-2 font-mono mt-4">
                     <p class="font-bold text-amber-400 uppercase">> LOGS DE CONEXIÓN API CLIMATOLÓGICA:</p>
-                    <p id="climaLog" class="text-slate-300">Sistema listo. Los datos se actualizan automáticamente al seleccionar la sucursal.</p>
+                    <p id="climaLog" class="text-slate-300">Sistema listo. Los datos se actualizan automáticamente al seleccionar la sucursal o tipear coordenadas específicas.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- LÓGICA JAVASCRIPT SINCRONIZADA V11.3 COMPLETA -->
+    <!-- LÓGICA JAVASCRIPT SINCRONIZADA V11.3 COMPLETA CON CAMPO UNIFICADO DE FRANQUICIA -->
     <script>
         let DB_FRANQUICIAS = {
             'GRI-1042': {
+                codigo: 'GRI-1042',
                 nombre: 'Grido 1042 - Córdoba Centro',
+                ciudad: 'Córdoba',
+                identificadorCompleto: 'GRI-1042 - Grido 1042 - Córdoba Centro - Córdoba',
                 lineaBaseKg: 1500,
                 origenBase: 'Histórico Auditado YoY',
                 lat: -31.4135,
                 lon: -64.1810,
                 foda: {
-                    fortalezas: "1. Posicionamiento de marca consolidado en zona peatonal y céntrica de Córdoba.\n2. Excelente flujo continuo de clientes en horarios vespertinos.\n3. Calidad estandarizada y eficiencia en tiempos de atención.",
+                    fortalezas: "1. Posicionamiento de marca consolidado en zona peatonal y céntrica de Córdoba.\n2. Excelente flujo continuo de clientes en horarios vespertinos.\n3. Calidad estandarizada y eficiencia in tiempos de atención.",
                     debilidades: "1. Costos fijos elevados derivados del alquiler en zona céntrica.\n2. Alta rotación de personal operativo en picos de verano.\n3. Espacio acotado para almacenamiento en cámaras frigoríficas.",
                     oportunidades: "1. Expansión acelerada de ventas nocturnas mediante canales de delivery.\n2. Venta cruzada con líneas de postres helados y tortas congeladas.\n3. Convenios corporativos con comercios y oficinas del microcentro.",
                     amenazas: "1. Presencia de heladerías artesanales competidoras en el radio cercano.\n2. Incremento tarifario en energía eléctrica para mantenimiento de frío.\n3. Sensibilidad al precio ante fluctuaciones macroeconómicas."
                 },
-                inputData: { nombre_franquicia: 'Grido 1042 - Córdoba Centro', superficie_minima_m2: 80, personal_promedio: 6, plazo_retorno_meses: 24, margen_operativo_promedio: 22.5 },
+                inputData: { nombre_franquicia: 'GRI-1042 - Grido 1042 - Córdoba Centro - Córdoba', superficie_minima_m2: 80, personal_promedio: 6, plazo_retorno_meses: 24, margen_operativo_promedio: 22.5 },
                 historial: [
                     { mes: '2026-07', ventas: 18000000, kilos: 1800, cmv: 9300000, salarios: 2500000, alquiler: 1400000, servicios: 710000, comisiones: 360000, logistica: 220000, canon: 540000, otros: 400000, tickets: 3800, inversion: 540000, volBaseExcel: 1500 },
                     { mes: '2026-08', ventas: 18500000, kilos: 1820, cmv: 9600000, salarios: 2550000, alquiler: 1400000, servicios: 720000, comisiones: 370000, logistica: 230000, canon: 555000, otros: 410000, tickets: 3850, inversion: 555000, volBaseExcel: 1500 },
@@ -936,7 +966,10 @@
                 ]
             },
             'GRI-2058': {
+                codigo: 'GRI-2058',
                 nombre: 'Grido 2058 - Salta Capital',
+                ciudad: 'Salta',
+                identificadorCompleto: 'GRI-2058 - Grido 2058 - Salta Capital - Salta',
                 lineaBaseKg: 1250,
                 origenBase: 'Histórico Auditado YoY',
                 lat: -24.7859,
@@ -947,7 +980,7 @@
                     oportunidades: "1. Impulso del turismo receptivo y consumo en paseos familiares.\n2. Alianzas institucionales con colegios y clubes deportivos locales.\n3. Incorporación de productos de consumo impulso en formato familiar.",
                     amenazas: "1. Competencia local de heladerías regionales de bajo costo.\n2. Costos de flete y transporte de congelados en larga distancia.\n3. Variaciones climáticas atípicas durante primavera."
                 },
-                inputData: { nombre_franquicia: 'Grido 2058 - Salta Capital', superficie_minima_m2: 70, personal_promedio: 5, plazo_retorno_meses: 22, margen_operativo_promedio: 20.0 },
+                inputData: { nombre_franquicia: 'GRI-2058 - Grido 2058 - Salta Capital - Salta', superficie_minima_m2: 70, personal_promedio: 5, plazo_retorno_meses: 22, margen_operativo_promedio: 20.0 },
                 historial: [
                     { mes: '2026-07', ventas: 14000000, kilos: 1400, cmv: 7200000, salarios: 2000000, alquiler: 1000000, servicios: 500000, comisiones: 280000, logistica: 180000, canon: 420000, otros: 300000, tickets: 3500, inversion: 420000, volBaseExcel: 1250 },
                     { mes: '2026-08', ventas: 14500000, kilos: 1430, cmv: 7500000, salarios: 2000000, alquiler: 1000000, servicios: 510000, comisiones: 290000, logistica: 185000, canon: 435000, otros: 310000, tickets: 3550, inversion: 435000, volBaseExcel: 1250 },
@@ -955,7 +988,10 @@
                 ]
             },
             'GRI-3112': {
+                codigo: 'GRI-3112',
                 nombre: 'Grido 3112 - Buenos Aires Norte',
+                ciudad: 'Buenos Aires',
+                identificadorCompleto: 'GRI-3112 - Grido 3112 - Buenos Aires Norte - Buenos Aires',
                 lineaBaseKg: 1800,
                 origenBase: 'Histórico Auditado YoY',
                 lat: -34.6037,
@@ -966,11 +1002,11 @@
                     oportunidades: "1. Crecimiento del mercado de helado familiar preenvasado.\n2. Marketing digital geolocalizado en barrios cerrados vecinos.\n3. Promociones corporativas y catering para eventos privados.",
                     amenazas: "1. Mercados saturados con opciones múltiples de postres helados.\n2. Costos de comisiones elevados en agregadores de delivery.\n3. Exigencias regulatorias y de habilitación municipal estrictas."
                 },
-                inputData: { nombre_franquicia: 'Grido 3112 - Buenos Aires Norte', superficie_minima_m2: 95, personal_promedio: 8, plazo_retorno_meses: 26, margen_operativo_promedio: 24.0 },
+                inputData: { nombre_franquicia: 'GRI-3112 - Grido 3112 - Buenos Aires Norte - Buenos Aires', superficie_minima_m2: 95, personal_promedio: 8, plazo_retorno_meses: 26, margen_operativo_promedio: 24.0 },
                 historial: [
                     { mes: '2026-07', ventas: 22000000, kilos: 2100, cmv: 11400000, salarios: 3100000, alquiler: 1800000, servicios: 900000, comisiones: 440000, logistica: 280000, canon: 660000, otros: 500000, tickets: 4200, inversion: 660000, volBaseExcel: 1800 },
                     { mes: '2026-08', ventas: 23000000, kilos: 2200, cmv: 11900000, salarios: 3200000, alquiler: 1800000, servicios: 920000, comisiones: 460000, logistica: 290000, canon: 690000, otros: 510000, tickets: 4300, inversion: 690000, volBaseExcel: 1800 },
-                    { mes: '2026-09', ventas: 24100000, kilos: 2300, cmv: 12500000, salarios: 3300000, alquiler: 1800000, servicios: 950000, comisiones: 482000, logistica: 300000, canon: 723000, other: 520000, tickets: 4380, inversion: 723000, volBaseExcel: 1800 }
+                    { mes: '2026-09', ventas: 24100000, kilos: 2300, cmv: 12500000, salarios: 3300000, alquiler: 1800000, servicios: 950000, comisiones: 482000, logistica: 300000, canon: 723000, otros: 520000, tickets: 4380, inversion: 723000, volBaseExcel: 1800 }
                 ]
             }
         };
@@ -997,7 +1033,33 @@
 
         function inicializarPlataforma() {
             cargarEstadoGuardado();
+            actualizarSelectorFranquiciasUI();
             alCambiarFranquicia();
+        }
+
+        function actualizarSelectorFranquiciasUI() {
+            const selectFranq = document.getElementById('selectFranquicia');
+            const valorActual = selectFranq.value;
+            selectFranq.innerHTML = '';
+
+            for (const key in DB_FRANQUICIAS) {
+                const opt = document.createElement('option');
+                opt.value = key;
+                opt.innerText = DB_FRANQUICIAS[key].identificadorCompleto || `${DB_FRANQUICIAS[key].codigo} - ${DB_FRANQUICIAS[key].nombre} - ${DB_FRANQUICIAS[key].ciudad}`;
+                if (key === 'GRI-CUSTOM') {
+                    opt.id = 'optCustomFranq';
+                    if (!DB_FRANQUICIAS[key].historial || DB_FRANQUICIAS[key].historial.length === 0) {
+                        opt.disabled = true;
+                    }
+                }
+                selectFranq.appendChild(opt);
+            }
+
+            if (Array.from(selectFranq.options).some(o => o.value === valorActual)) {
+                selectFranq.value = valorActual;
+            } else {
+                selectFranq.value = 'GRI-1042';
+            }
         }
 
         function navegar(modId) {
@@ -1075,19 +1137,40 @@
             document.getElementById('ctx_amenazas').value = datosFranq.foda.amenazas || '';
         }
 
+        function limpiarCoordenadasClima() {
+            document.getElementById('inputLatClima').value = '';
+            document.getElementById('inputLonClima').value = '';
+            consultarClimaFranquicia();
+        }
+
         async function consultarClimaFranquicia() {
             const franqKey = document.getElementById('selectFranquicia').value;
             const datosFranq = DB_FRANQUICIAS[franqKey];
             if (!datosFranq) return;
 
-            const lat = datosFranq.lat || -31.4135;
-            const lon = datosFranq.lon || -64.1810;
+            const latInputVal = document.getElementById('inputLatClima').value.trim();
+            const lonInputVal = document.getElementById('inputLonClima').value.trim();
+
+            let lat, lon, origenTexto;
+
+            if (latInputVal !== '' && lonInputVal !== '' && !isNaN(latInputVal) && !isNaN(lonInputVal)) {
+                lat = parseFloat(latInputVal);
+                lon = parseFloat(lonInputVal);
+                origenTexto = `Coordenadas Específicas Tipeadas (Lat: ${lat}, Lon: ${lon})`;
+            } else {
+                lat = datosFranq.lat || -31.4135;
+                lon = datosFranq.lon || -64.1810;
+                origenTexto = `Localidad Filtrada: ${datosFranq.nombre} (Lat: ${lat}, Lon: ${lon})`;
+                
+                if (document.getElementById('inputLatClima').value === '') document.getElementById('inputLatClima').value = lat;
+                if (document.getElementById('inputLonClima').value === '') document.getElementById('inputLonClima').value = lon;
+            }
+
             const logEl = document.getElementById('climaLog');
-            
-            logEl.innerText = `Consultando API Open-Meteo (Pronóstico a 10 días) para ${datosFranq.nombre} (Lat: ${lat}, Lon: ${lon})...`;
+            logEl.innerText = `Consultando API Open-Meteo (Pronóstico a 10 días exactos) para ${origenTexto}...`;
 
             try {
-                const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto`);
+                const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&forecast_days=10&timezone=auto`);
                 const data = await response.json();
                 
                 if (data && data.current) {
@@ -1115,7 +1198,6 @@
                     document.getElementById('climaImpacto').innerText = impacto;
                     document.getElementById('climaRecomendacion').innerText = rec;
 
-                    // Renderizar Pronóstico de 10 días
                     if (data.daily && data.daily.time) {
                         const forecastContainer = document.getElementById('forecast10DiasContainer');
                         if (forecastContainer) {
@@ -1145,7 +1227,7 @@
                         }
                     }
 
-                    logEl.innerText = `[OK] Pronóstico meteorológico a 10 días sincronizado exitosamente para ${datosFranq.nombre}.`;
+                    logEl.innerText = `[OK] Pronóstico meteorológico a 10 días sincronizado exitosamente para ${origenTexto}.`;
                 } else {
                     logEl.innerText = `[AVISO] Respuesta de API sin datos válidos. Se mantienen valores por defecto.`;
                 }
@@ -1163,6 +1245,8 @@
             const estadoGuardar = {
                 franquicia: document.getElementById('selectFranquicia').value,
                 periodo: document.getElementById('selectPeriodo').value,
+                latClima: document.getElementById('inputLatClima').value,
+                lonClima: document.getElementById('inputLonClima').value,
                 volBaseManual: document.getElementById('simVolBase').value,
                 precioNormal: document.getElementById('simPrecioNormal').value,
                 precioPromo: document.getElementById('simPrecioPromo').value,
@@ -1197,11 +1281,7 @@
 
                 if (estado.dbFranquiciasData) {
                     DB_FRANQUICIAS = estado.dbFranquiciasData;
-                    if (DB_FRANQUICIAS['GRI-CUSTOM']) {
-                        const optCustom = document.getElementById('optCustomFranq');
-                        optCustom.disabled = false;
-                        optCustom.innerText = DB_FRANQUICIAS['GRI-CUSTOM'].nombre;
-                    }
+                    actualizarSelectorFranquiciasUI();
                 }
 
                 if (estado.franquicia && DB_FRANQUICIAS[estado.franquicia]) {
@@ -1210,6 +1290,8 @@
                 }
 
                 if (estado.periodo) document.getElementById('selectPeriodo').value = estado.periodo;
+                if (estado.latClima !== undefined) document.getElementById('inputLatClima').value = estado.latClima;
+                if (estado.lonClima !== undefined) document.getElementById('inputLonClima').value = estado.lonClima;
                 if (estado.volBaseManual) document.getElementById('simVolBase').value = estado.volBaseManual;
                 if (estado.precioNormal) document.getElementById('simPrecioNormal').value = estado.precioNormal;
                 if (estado.precioPromo) document.getElementById('simPrecioPromo').value = estado.precioPromo;
@@ -1239,6 +1321,16 @@
             poblarSelectorPeriodos();
             sincronizarParametrosSimulador();
             cargarFodaFranquicia();
+
+            const franqKey = document.getElementById('selectFranquicia').value;
+            const datosFranq = DB_FRANQUICIAS[franqKey];
+            if (datosFranq) {
+                const latInp = document.getElementById('inputLatClima');
+                const lonInp = document.getElementById('inputLonClima');
+                if (latInp && lonInp && latInp.value === '') latInp.value = datosFranq.lat || '';
+                if (latInp && lonInp && lonInp.value === '') lonInp.value = datosFranq.lon || '';
+            }
+
             actualizarInterfaz();
             consultarClimaFranquicia();
         }
@@ -1257,12 +1349,14 @@
             const valorAnterior = selectPer.value;
             selectPer.innerHTML = '';
 
-            datosFranq.historial.slice().reverse().forEach(h => {
-                const opt = document.createElement('option');
-                opt.value = h.mes;
-                opt.innerText = h.mes;
-                selectPer.appendChild(opt);
-            });
+            if (datosFranq.historial && datosFranq.historial.length > 0) {
+                datosFranq.historial.slice().reverse().forEach(h => {
+                    const opt = document.createElement('option');
+                    opt.value = h.mes;
+                    opt.innerText = h.mes;
+                    selectPer.appendChild(opt);
+                });
+            }
 
             const optTodos = document.createElement('option');
             optTodos.value = 'TODOS';
@@ -1280,7 +1374,7 @@
             const franqKey = document.getElementById('selectFranquicia').value;
             const periodo = document.getElementById('selectPeriodo').value;
             const datosFranq = DB_FRANQUICIAS[franqKey];
-            if (!datosFranq || !datosFranq.historial.length) return;
+            if (!datosFranq || !datosFranq.historial || !datosFranq.historial.length) return;
 
             let reg;
             let factorMeses = 1;
@@ -1332,7 +1426,7 @@
             const franqKey = document.getElementById('selectFranquicia').value;
             const periodo = document.getElementById('selectPeriodo').value;
             const datosFranq = DB_FRANQUICIAS[franqKey];
-            if (!datosFranq) return;
+            if (!datosFranq || !datosFranq.historial || !datosFranq.historial.length) return;
 
             let registro;
             if (periodo === 'TODOS') {
@@ -1356,421 +1450,383 @@
             const { ebitda, ebitdaPct } = calcularEbitdaRegistro(registro);
             const precioMedioKg = registro.kilos > 0 ? (registro.ventas / registro.kilos) : 0;
             const ticketProm = registro.tickets > 0 ? (registro.ventas / registro.tickets) : 0;
-            const kgPorTicket = registro.tickets > 0 ? (registro.kilos / registro.tickets) : 0;
-            const roiInfo = obtenerMetricasRoi(registro.roi, registro.inversion || registro.canon);
+            const kgTicket = registro.tickets > 0 ? (registro.kilos / registro.tickets) : 0;
+            const margenPct = registro.ventas > 0 ? (margenBruto / registro.ventas) * 100 : 0;
 
             document.getElementById('kpiVentas').innerText = fmt(registro.ventas);
-            document.getElementById('kpiVolumenKg').innerText = fmtKg(registro.kilos) + ' Vendidos';
+            document.getElementById('kpiVolumenKg').innerText = fmtKg(registro.kilos);
             document.getElementById('kpiPrecioKg').innerText = fmt(precioMedioKg) + ' / Kg';
-            document.getElementById('kpiMargenPct').innerText = `${registro.ventas > 0 ? ((margenBruto / registro.ventas) * 100).toFixed(1) : 0}% Margen Bruto`;
-            document.getElementById('kpiKgTicket').innerText = kgPorTicket.toFixed(2) + ' Kg';
+            document.getElementById('kpiMargenPct').innerText = `Margen Bruto: ${margenPct.toFixed(1)}%`;
+            document.getElementById('kpiKgTicket').innerText = kgTicket.toFixed(2) + ' Kg';
             document.getElementById('kpiTicket').innerText = `Ticket Prom: ${fmt(ticketProm)}`;
             document.getElementById('kpiEbitda').innerText = fmt(ebitda);
             document.getElementById('kpiEbitdaPct').innerText = `${ebitdaPct.toFixed(1)}% Margen EBITDA`;
-            document.getElementById('kpiRoi').innerText = roiInfo.multiplicador;
-            document.getElementById('kpiRoiDetalle').innerText = `${roiInfo.porcentaje} | ${roiInfo.monto}`;
+            document.getElementById('kpiRoi').innerText = (registro.roi || 0).toFixed(1) + 'x';
+            const mRoi = obtenerMetricasRoi(registro.roi, registro.inversion || 500000);
+            document.getElementById('kpiRoiDetalle').innerText = `${mRoi.porcentaje} | ${mRoi.monto}`;
 
             document.getElementById('eerrVentas').innerText = fmt(registro.ventas);
-            document.getElementById('eerrCmv').innerText = '-' + fmt(registro.cmv);
+            document.getElementById('eerrCmv').innerText = fmt(registro.cmv);
             document.getElementById('eerrMargen').innerText = fmt(margenBruto);
-            document.getElementById('eerrComisiones').innerText = '-' + fmt(registro.comisiones);
-            document.getElementById('eerrLogistica').innerText = '-' + fmt(registro.logistica);
+            document.getElementById('eerrComisiones').innerText = fmt(registro.comisiones);
+            document.getElementById('eerrLogistica').innerText = fmt(registro.logistica);
             document.getElementById('eerrMargenContribucion').innerText = fmt(margenContribucion);
-            document.getElementById('eerrSalarios').innerText = '-' + fmt(registro.salarios);
-            document.getElementById('eerrAlquiler').innerText = '-' + fmt(registro.alquiler);
-            document.getElementById('eerrServicios').innerText = '-' + fmt(registro.servicios);
-            document.getElementById('eerrCanon').innerText = '-' + fmt(registro.canon);
-            document.getElementById('eerrOtrosGastos').innerText = '-' + fmt(registro.other);
-            document.getElementById('eerrTotalGastos').innerText = '-' + fmt(gastosFijos);
-            document.getElementById('eerrEbitda').innerText = fmt(ebitda) + ` (${ebitdaPct.toFixed(1)}%)`;
+            document.getElementById('eerrSalarios').innerText = fmt(registro.salarios);
+            document.getElementById('eerrAlquiler').innerText = fmt(registro.alquiler);
+            document.getElementById('eerrServicios').innerText = fmt(registro.servicios);
+            document.getElementById('eerrCanon').innerText = fmt(registro.canon);
+            document.getElementById('eerrOtrosGastos').innerText = fmt(registro.other);
+            document.getElementById('eerrTotalGastos').innerText = fmt(gastosFijos);
+            document.getElementById('eerrEbitda').innerText = fmt(ebitda);
 
-            poblarPlanGeneral(datosFranq);
-            cargarTablaComercial(datosFranq.historial, periodo);
-            renderizarGraficos(datosFranq.historial, periodo);
+            const tbodyComercial = document.getElementById('tablaComercial');
+            if (tbodyComercial) {
+                let htmlCom = '';
+                datosFranq.historial.forEach(h => {
+                    h.other = h.other || h.otros || 0;
+                    const mbH = h.ventas - h.cmv;
+                    const mcH = mbH - ((h.comisiones || 0) + (h.logistica || 0));
+                    const gfH = (h.salarios || 0) + (h.alquiler || 0) + (h.servicios || 0) + (h.canon || 0) + h.other;
+                    const ebH = mcH - gfH;
+                    const ebPctH = h.ventas > 0 ? (ebH / h.ventas) * 100 : 0;
+                    const pKgH = h.kilos > 0 ? h.ventas / h.kilos : 0;
+                    const tktH = h.tickets > 0 ? h.ventas / h.tickets : 0;
+                    const kgTktH = h.tickets > 0 ? h.kilos / h.tickets : 0;
+                    const roiH = calcularRoiRegistro(h);
+
+                    htmlCom += `
+                        <tr class="hover:bg-slate-50 border-b border-slate-100">
+                            <td class="p-2.5 font-bold">${h.mes}</td>
+                            <td class="p-2.5">${fmt(h.ventas)}</td>
+                            <td class="p-2.5">${fmtKg(h.kilos)}</td>
+                            <td class="p-2.5">${fmt(pKgH)}</td>
+                            <td class="p-2.5 text-red-600">${fmt(h.cmv)}</td>
+                            <td class="p-2.5 text-blue-800 font-bold">${fmt(mbH)}</td>
+                            <td class="p-2.5 text-red-600">${fmt(gfH)}</td>
+                            <td class="p-2.5 text-emerald-700 font-bold">${fmt(ebH)}</td>
+                            <td class="p-2.5 text-emerald-700 font-bold">${ebPctH.toFixed(1)}%</td>
+                            <td class="p-2.5">${fmt(tktH)}</td>
+                            <td class="p-2.5 text-blue-700 font-bold">${kgTktH.toFixed(2)} Kg</td>
+                            <td class="p-2.5 text-emerald-700 font-bold">${roiH.toFixed(1)}x</td>
+                            <td class="p-2.5"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">Auditado</span></td>
+                        </tr>
+                    `;
+                });
+                tbodyComercial.innerHTML = htmlCom;
+            }
+
+            renderizarGraficos(datosFranq);
+            actualizarTablaPlanGeneral();
             calcularSimulacion();
-            generarInformeIA();
         }
 
-        function poblarPlanGeneral(datosFranq) {
-            const inp = datosFranq.inputData || {};
-            if (inp.superficie_minima_m2) document.getElementById('pg_superficie_inp').value = inp.superficie_minima_m2;
-            if (inp.personal_promedio) document.getElementById('pg_personal_inp').value = inp.personal_promedio;
-            if (inp.plazo_retorno_meses) document.getElementById('pg_retorno_inp').value = inp.plazo_retorno_meses;
-            if (inp.margen_operativo_promedio) document.getElementById('pg_margen_ebitda_inp').value = inp.margen_operativo_promedio;
-            renderizarTablaPlanGeneral();
-        }
+        function renderizarGraficos(datosFranq) {
+            const meses = datosFranq.historial.map(h => h.mes);
+            const ventas = datosFranq.historial.map(h => h.ventas);
+            const kilos = datosFranq.historial.map(h => h.kilos);
+            const rois = datosFranq.historial.map(h => calcularRoiRegistro(h));
+            const ebitdas = datosFranq.historial.map(h => calcularEbitdaRegistro(h).ebitda);
+            const ebitdaPcts = datosFranq.historial.map(h => calcularEbitdaRegistro(h).ebitdaPct);
 
-        function actualizarParametrosOperativosManuales() {
-            const franqKey = document.getElementById('selectFranquicia').value;
-            const datosFranq = DB_FRANQUICIAS[franqKey];
-            if (!datosFranq) return;
-            if (!datosFranq.inputData) datosFranq.inputData = {};
-            datosFranq.inputData.superficie_minima_m2 = parseFloat(document.getElementById('pg_superficie_inp').value) || 0;
-            datosFranq.inputData.personal_promedio = parseInt(document.getElementById('pg_personal_inp').value) || 0;
-            datosFranq.inputData.plazo_retorno_meses = parseInt(document.getElementById('pg_retorno_inp').value) || 0;
-            datosFranq.inputData.margen_operativo_promedio = parseFloat(document.getElementById('pg_margen_ebitda_inp').value) || 0;
-            generarInformeIA();
-        }
-
-        function renderizarTablaPlanGeneral() {
-            const tbody = document.getElementById('tablaPlanGeneral');
-            tbody.innerHTML = '';
-            document.getElementById('lblCantRegistrosPlan').innerText = `${estructuraPlanGeneral.length} Registros`;
-
-            estructuraPlanGeneral.forEach((row, idx) => {
-                const pctAvance = row.invEst > 0 ? (row.invReal / row.invEst) * 100 : 0;
-                const isOver = pctAvance > 100;
-                const badgeClass = isOver 
-                    ? 'bg-red-100 text-red-700 border-red-300 font-black' 
-                    : 'bg-emerald-100 text-emerald-800 border-emerald-300 font-bold';
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 transition";
-                tr.innerHTML = `
-                    <td class="p-1.5 border">
-                        <input type="text" value="${row.plan || ''}" onchange="actualizarCampoPlan(${idx}, 'plan', this.value)" class="w-full text-xs font-bold text-blue-900 border border-slate-200 rounded px-1.5 py-1 bg-white focus:ring-1 focus:ring-blue-500" placeholder="Plan / Eje">
-                        <input type="text" value="${row.eje || ''}" onchange="actualizarCampoPlan(${idx}, 'eje', this.value)" class="w-full text-[10px] text-slate-500 border border-slate-200 rounded px-1.5 py-0.5 bg-white mt-0.5" placeholder="Sub-eje">
-                    </td>
-                    <td class="p-1.5 border text-center">
-                        <input type="text" value="${row.num || (idx+1)}" onchange="actualizarCampoPlan(${idx}, 'num', this.value)" class="w-8 text-center text-xs font-bold border border-slate-200 rounded py-1 bg-white">
-                    </td>
-                    <td class="p-1.5 border">
-                        <input type="text" value="${row.accion || ''}" onchange="actualizarCampoPlan(${idx}, 'accion', this.value)" class="w-full text-xs text-slate-800 border border-slate-200 rounded px-1.5 py-1 bg-white font-sans" placeholder="Descripción de la acción...">
-                    </td>
-                    <td class="p-1.5 border text-right">
-                        <input type="number" value="${row.invEst || 0}" onchange="actualizarCampoPlan(${idx}, 'invEst', parseFloat(this.value)||0)" class="w-24 text-right text-xs font-mono border border-slate-200 rounded px-1.5 py-1 bg-white">
-                    </td>
-                    <td class="p-1.5 border text-right">
-                        <input type="number" value="${row.invReal || 0}" onchange="actualizarCampoPlan(${idx}, 'invReal', parseFloat(this.value)||0)" class="w-24 text-right text-xs font-mono font-bold text-slate-900 border border-slate-200 rounded px-1.5 py-1 bg-white">
-                    </td>
-                    <td class="p-1.5 border text-center font-mono">
-                        <span class="inline-block px-2.5 py-1 rounded text-xs border ${badgeClass}">
-                            ${pctAvance.toFixed(1)}%
-                        </span>
-                    </td>
-                    <td class="p-1.5 border relative">
-                        <textarea onchange="actualizarCampoPlan(${idx}, 'nota', this.value)" class="note-textarea w-full text-xs text-slate-700 border border-slate-200 rounded p-1.5 bg-white font-sans" placeholder="Nota u observación">${row.nota || ''}</textarea>
-                    </td>
-                    <td class="p-1.5 border text-center">
-                        <button onclick="eliminarFilaPlanGeneral(${idx})" class="text-red-500 hover:text-red-700 text-xs px-2 py-1 rounded font-bold" title="Eliminar fila">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
+            // Chart Evolución
+            const ctxEv = document.getElementById('chartEvolucion').getContext('2d');
+            if (chartEvolucionInstance) chartEvolucionInstance.destroy();
+            chartEvolucionInstance = new Chart(ctxEv, {
+                type: 'line',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        { label: 'Ventas ($)', data: ventas, borderColor: '#2563eb', backgroundColor: '#2563eb', yAxisID: 'y', tension: 0.2 },
+                        { label: 'Volumen (Kg)', data: kilos, borderColor: '#10b981', backgroundColor: '#10b981', borderDash: [5,5], yAxisID: 'y1', tension: 0.2 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Pesos ($)' } },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Kilos (Kg)' } }
+                    }
+                }
             });
-        }
 
-        function actualizarCampoPlan(idx, campo, valor) {
-            if (estructuraPlanGeneral[idx]) {
-                estructuraPlanGeneral[idx][campo] = valor;
-                renderizarTablaPlanGeneral();
-                generarInformeIA();
-            }
-        }
-
-        function agregarFilaPlanGeneral() {
-            if (estructuraPlanGeneral.length >= 20) {
-                alert("Límite máximo de 20 registros alcanzado.");
-                return;
-            }
-            estructuraPlanGeneral.push({
-                plan: 'Nuevo Plan',
-                num: String(estructuraPlanGeneral.length + 1),
-                eje: 'NUEVO EJE',
-                accion: 'Describa la nueva acción operativa...',
-                invEst: 100000,
-                invReal: 100000,
-                nota: 'Pendiente de ejecución.'
+            // Chart ROI
+            const ctxRoi = document.getElementById('chartRoi').getContext('2d');
+            if (chartRoiInstance) chartRoiInstance.destroy();
+            chartRoiInstance = new Chart(ctxRoi, {
+                type: 'bar',
+                data: {
+                    labels: meses,
+                    datasets: [{ label: 'ROI MKT (x)', data: rois, backgroundColor: '#3b82f6', borderRadius: 6 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, title: { display: true, text: 'Multiplicador (x)' } } } }
             });
-            renderizarTablaPlanGeneral();
-            generarInformeIA();
-        }
 
-        function eliminarFilaPlanGeneral(idx) {
-            if (estructuraPlanGeneral.length <= 1) {
-                alert("Debe mantener al menos un registro en el plan.");
-                return;
+            // Chart EBITDA
+            const ctxEb = document.getElementById('chartEbitda').getContext('2d');
+            if (chartEbitdaInstance) chartEbitdaInstance.destroy();
+            chartEbitdaInstance = new Chart(ctxEb, {
+                type: 'bar',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        { label: 'EBITDA ($)', data: ebitdas, backgroundColor: '#10b981', yAxisID: 'y', borderRadius: 6 },
+                        { label: 'Margen EBITDA (%)', data: ebitdaPcts, type: 'line', borderColor: '#f59e0b', backgroundColor: '#f59e0b', yAxisID: 'y1', tension: 0.2 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'EBITDA ($)' } },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Margen (%)' }, min: 0, max: 40 }
+                    }
+                }
+            });
+
+            // Copias para reporte imprimible
+            const ctxEvC = document.getElementById('chartEvolucionCopy');
+            if (ctxEvC) {
+                if (chartEvolucionCopyInstance) chartEvolucionCopyInstance.destroy();
+                chartEvolucionCopyInstance = new Chart(ctxEvC.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: meses,
+                        datasets: [
+                            { label: 'Ventas ($)', data: ventas, borderColor: '#2563eb', yAxisID: 'y', tension: 0.2 },
+                            { label: 'Volumen (Kg)', data: kilos, borderColor: '#10b981', borderDash: [5,5], yAxisID: 'y1', tension: 0.2 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, y1: { display: false } } }
+                });
             }
-            estructuraPlanGeneral.splice(idx, 1);
-            renderizarTablaPlanGeneral();
-            generarInformeIA();
+
+            const ctxEbC = document.getElementById('chartEbitdaCopy');
+            if (ctxEbC) {
+                if (chartEbitdaCopyInstance) chartEbitdaCopyInstance.destroy();
+                chartEbitdaCopyInstance = new Chart(ctxEbC.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: meses,
+                        datasets: [
+                            { label: 'EBITDA ($)', data: ebitdas, backgroundColor: '#10b981', yAxisID: 'y' },
+                            { label: 'Margen (%)', data: ebitdaPcts, type: 'line', borderColor: '#f59e0b', yAxisID: 'y1' }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, y1: { display: false } } }
+                });
+            }
+
+            // Insights automáticos
+            const ultimoEbitdaPct = ebitdaPcts[ebitdaPcts.length - 1] || 0;
+            document.getElementById('insightEbitda').innerText = `El margen EBITDA actual es de ${ultimoEbitdaPct.toFixed(1)}%. ${ultimoEbitdaPct >= 18 ? 'Se encuentra por encima de la meta corporativa del 18%.' : 'Requiere optimización de gastos fijos para alcanzar la meta del 18%.'}`;
+            document.getElementById('insightRoi').innerText = `El ROI promocional promedio se ubica en ${(rois.reduce((a,b)=>a+b,0)/rois.length).toFixed(1)}x, indicando una rentabilidad sólida sobre la inversión en marketing.`;
+            document.getElementById('insightEvolucion').innerText = `Se observa una correlación positiva sostenida entre la facturación bruta y la masa despachada en kilos para ${datosFranq.nombre}.`;
         }
 
         function calcularSimulacion() {
-            const pNormal = parseFloat(document.getElementById('simPrecioNormal').value) || 0;
-            const pPromo = parseFloat(document.getElementById('simPrecioPromo').value) || 0;
-            const costoUnit = parseFloat(document.getElementById('simCostoUnit').value) || 0;
-            const volBaseA = parseFloat(document.getElementById('simVolBase').value) || 0;
-            const upliftPct = parseFloat(document.getElementById('simUplift').value) || 0;
-            const inversion = parseFloat(document.getElementById('simInversion').value) || 0;
+            const pNorm = parseFloat(document.getElementById('simPrecioNormal').value) || 12000;
+            const pPromo = parseFloat(document.getElementById('simPrecioPromo').value) || 9800;
+            const costoUnit = parseFloat(document.getElementById('simCostoUnit').value) || 5500;
+            const volBase = parseFloat(document.getElementById('simVolBase').value) || 1500;
+            const upliftEst = parseFloat(document.getElementById('simUplift').value) || 35;
+            const inversion = parseFloat(document.getElementById('simInversion').value) || 300000;
 
-            const volRealA = volBaseA * (1 + (upliftPct / 100));
-            const incBrutoA = volRealA - volBaseA;
+            const volBaseB = parseFloat(document.getElementById('simVolBaseB').value) || 400;
+            const volRealB = parseFloat(document.getElementById('simVolRealB').value) || 320;
+            const kgCanibalizados = Math.max(0, volBaseB - volRealB);
+            document.getElementById('lblKgCanibalizados').innerText = kgCanibalizados.toFixed(1) + ' Kg';
 
-            const volBaseB = parseFloat(document.getElementById('simVolBaseB').value) || 0;
-            const volRealB = parseFloat(document.getElementById('simVolRealB').value) || 0;
-            const canibalizacionKg = Math.max(0, volBaseB - volRealB);
+            const volRealA = volBase * (1 + (upliftEst / 100));
+            const incBrutoA = Math.max(0, volRealA - volBase);
+            const kgNetos = Math.max(0, incBrutoA - kgCanibalizados);
+            const liftRealPct = volBase > 0 ? (kgNetos / volBase) * 100 : 0;
 
-            const volNetoKg = incBrutoA - canibalizacionKg;
-            const liftRealPct = volBaseA > 0 ? (volNetoKg / volBaseA) * 100 : 0;
-
-            const margenUnitNormal = pNormal - costoUnit;
             const margenUnitPromo = pPromo - costoUnit;
-            const margenBaseA = volBaseA * margenUnitNormal;
-            const margenNuevoA = (volBaseA * margenUnitNormal) + (volNetoKg * margenUnitPromo);
-            const margenIncrementalReal = margenNuevoA - margenBaseA;
-            const roiReal = inversion > 0 ? (margenIncrementalReal / inversion) : 0;
-            const roiRealPct = roiReal * 100;
+            const margenIncBruto = kgNetos * margenUnitPromo;
+            const margenRealNeto = margenIncBruto - inversion;
+            const roiReal = inversion > 0 ? (margenIncBruto / inversion) : 0;
 
-            document.getElementById('lblKgCanibalizados').innerText = canibalizacionKg.toFixed(1) + ' Kg';
-            document.getElementById('resLiftRealKg').innerText = (liftRealPct >= 0 ? '+' : '') + liftRealPct.toFixed(1) + '%';
-            document.getElementById('resLiftRealKgDetalle').innerText = `${volNetoKg.toFixed(1)} Kg netos adic.`;
-            document.getElementById('resLiftEstimadoKg').innerText = '+' + upliftPct.toFixed(1) + '%';
-            document.getElementById('resLiftEstimadoKgDetalle').innerText = `${incBrutoA.toFixed(1)} Kg est. adic.`;
-            document.getElementById('resMargenReal').innerText = fmt(margenIncrementalReal);
-            document.getElementById('resMargenRealNeto').innerText = `${fmt(margenIncrementalReal)} neto ganancia`;
+            document.getElementById('resLiftRealKg').innerText = '+' + liftRealPct.toFixed(1) + '%';
+            document.getElementById('resLiftRealKgDetalle').innerText = kgNetos.toFixed(1) + ' Kg netos adic.';
+            document.getElementById('resLiftEstimadoKg').innerText = '+' + upliftEst.toFixed(1) + '%';
+            document.getElementById('resLiftEstimadoKgDetalle').innerText = incBrutoA.toFixed(1) + ' Kg est. adic.';
+            document.getElementById('resMargenReal').innerText = fmt(margenIncBruto);
+            document.getElementById('resMargenRealNeto').innerText = fmt(margenRealNeto) + ' neto ganancia';
             document.getElementById('resRoiReal').innerText = roiReal.toFixed(1) + 'x';
-            document.getElementById('resRoiRealDetalle').innerText = `${roiRealPct.toFixed(0)}% retorno`;
+            document.getElementById('resRoiRealDetalle').innerText = (roiReal * 100).toFixed(0) + '% retorno';
 
-            const brecha = liftRealPct - upliftPct;
+            const brecha = upliftEst - liftRealPct;
             const boxBrecha = document.getElementById('boxBrechaLift');
             const lblBrecha = document.getElementById('lblBrechaTexto');
             const badgeBrecha = document.getElementById('badgeBrecha');
 
-            if (brecha >= 0) {
-                boxBrecha.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-between";
-                lblBrecha.innerText = `Superávit de conversión: +${brecha.toFixed(1)}% vs estimado`;
-                badgeBrecha.className = "px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-200 text-emerald-900";
-                badgeBrecha.innerText = "Favorable";
+            if (Math.abs(brecha) <= 5) {
+                boxBrecha.className = 'p-4 rounded-xl border bg-emerald-50 border-emerald-200 flex items-center justify-between';
+                lblBrecha.innerText = 'Desviación mínima frente a la proyección inicial.';
+                badgeBrecha.className = 'px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-200 text-emerald-800';
+                badgeBrecha.innerText = 'Precisión Alta';
+            } else if (brecha > 5) {
+                boxBrecha.className = 'p-4 rounded-xl border bg-amber-50 border-amber-200 flex items-center justify-between';
+                lblBrecha.innerText = 'El Lift real es inferior al estimado por efecto canibalización de B.';
+                badgeBrecha.className = 'px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-amber-200 text-amber-800';
+                badgeBrecha.innerText = 'Brecha Negativa';
             } else {
-                boxBrecha.className = "p-4 rounded-xl border border-amber-200 bg-amber-50/50 flex items-center justify-between";
-                lblBrecha.innerText = `Brecha negativa por sustitución: ${brecha.toFixed(1)}%`;
-                badgeBrecha.className = "px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-amber-200 text-amber-900";
-                badgeBrecha.innerText = "Ajustar Mix";
+                boxBrecha.className = 'p-4 rounded-xl border bg-blue-50 border-blue-200 flex items-center justify-between';
+                lblBrecha.innerText = 'El Lift real supera las expectativas comerciales iniciales.';
+                badgeBrecha.className = 'px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-blue-200 text-blue-800';
+                badgeBrecha.innerText = 'Sobredesempeño';
             }
 
             const boxSigni = document.getElementById('boxSignificatividad');
             const lblSigni = document.getElementById('lblSigniResultado');
             const badgeSigni = document.getElementById('badgeSigni');
 
-            if (roiReal >= 1.5) {
-                boxSigni.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-between";
-                lblSigni.innerText = `Campaña altamente rentable (ROI ${roiReal.toFixed(1)}x)`;
-                badgeSigni.className = "px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-600 text-white";
-                badgeSigni.innerText = "Recomendada";
+            if (roiReal >= 2.0) {
+                boxSigni.className = 'p-4 rounded-xl border border-emerald-200 bg-emerald-50/70 flex items-center justify-between';
+                lblSigni.innerText = 'Campaña Altamente Rentable (ROI > 2.0x)';
+                badgeSigni.className = 'px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-200 text-emerald-900';
+                badgeSigni.innerText = 'Viable / Escalar';
             } else if (roiReal >= 1.0) {
-                boxSigni.className = "p-4 rounded-xl border border-blue-200 bg-blue-50/50 flex items-center justify-between";
-                lblSigni.innerText = `Campaña en umbral de equilibrio (ROI ${roiReal.toFixed(1)}x)`;
-                badgeSigni.className = "px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-blue-600 text-white";
-                badgeSigni.innerText = "Neutral";
+                boxSigni.className = 'p-4 rounded-xl border border-blue-200 bg-blue-50/70 flex items-center justify-between';
+                lblSigni.innerText = 'Campaña Rentable con Margen Ajustado (ROI 1.0x - 2.0x)';
+                badgeSigni.className = 'px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-blue-200 text-blue-900';
+                badgeSigni.innerText = 'Moderado';
             } else {
-                boxSigni.className = "p-4 rounded-xl border border-red-200 bg-red-50/50 flex items-center justify-between";
-                lblSigni.innerText = `Campaña no rentable por canibalización (ROI ${roiReal.toFixed(1)}x)`;
-                badgeSigni.className = "px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-600 text-white";
-                badgeSigni.innerText = "No Rentable";
+                boxSigni.className = 'p-4 rounded-xl border border-red-200 bg-red-50/70 flex items-center justify-between';
+                lblSigni.innerText = 'Campaña No Rentable (ROI < 1.0x por Canibalización)';
+                badgeSigni.className = 'px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-200 text-red-900';
+                badgeSigni.innerText = 'No Viable';
             }
 
-            document.getElementById('resDiagnosticoLift').innerText = `El producto promocionado generó un incremento bruto de ${incBrutoA.toFixed(1)} Kg. Descontando una canibalización de ${canibalizacionKg.toFixed(1)} Kg sobre el producto B, el volumen neto adicional es de ${volNetoKg.toFixed(1)} Kg. Con una inversión de ${fmt(inversion)}, se obtuvo un margen incremental real de ${fmt(margenIncrementalReal)}, arrojando un múltiplo ROI de ${roiReal.toFixed(1)}x.`;
+            document.getElementById('resDiagnosticoLift').innerText = `Dictamen: Con un volumen base de ${volBase} Kg y un precio promo de $${pPromo}, el producto A genera ${kgNetos.toFixed(1)} Kg netos descontando ${kgCanibalizados} Kg del producto B. El margen incremental neto resultante es de ${fmt(margenIncBruto)} frente a una inversión de ${fmt(inversion)}.`;
         }
 
-        function cargarTablaComercial(historial, periodoSeleccionado) {
-            const tbody = document.getElementById('tablaComercial');
-            tbody.innerHTML = '';
+        function actualizarTablaPlanGeneral() {
+            const tbody = document.getElementById('tablaPlanGeneral');
+            if (!tbody) return;
+            let html = '';
 
-            const listaFiltrada = periodoSeleccionado === 'TODOS' 
-                ? historial 
-                : historial.filter(h => h.mes === periodoSeleccionado);
+            estructuraPlanGeneral.forEach((f, index) => {
+                const avance = f.invEst > 0 ? (f.invReal / f.invEst) * 100 : 0;
+                const estiloAvance = avance > 100 ? 'text-red-600 font-black' : 'text-emerald-700 font-bold';
 
-            listaFiltrada.forEach(h => {
-                const mb = h.ventas - h.cmv;
-                const gastosOp = h.salarios + h.alquiler + h.servicios + h.comisiones + h.logistica + h.canon + (h.otros || h.other || 0);
-                const { ebitda, ebitdaPct } = calcularEbitdaRegistro(h);
-                const precioKg = h.kilos > 0 ? (h.ventas / h.kilos) : 0;
-                const ticket = h.tickets > 0 ? (h.ventas / h.tickets) : 0;
-                const kgTicket = h.tickets > 0 ? (h.kilos / h.tickets) : 0;
-                const roiMkt = calcularRoiRegistro(h);
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 transition";
-                tr.innerHTML = `
-                    <td class="p-2.5 font-bold text-slate-800">${h.mes}</td>
-                    <td class="p-2.5 font-mono">${fmt(h.ventas)}</td>
-                    <td class="p-2.5 font-mono">${fmtKg(h.kilos)}</td>
-                    <td class="p-2.5 font-mono">${fmt(precioKg)}</td>
-                    <td class="p-2.5 font-mono text-red-600">-${fmt(h.cmv)}</td>
-                    <td class="p-2.5 font-mono text-blue-800 font-bold">${fmt(mb)}</td>
-                    <td class="p-2.5 font-mono text-red-600">-${fmt(gastosOp)}</td>
-                    <td class="p-2.5 font-mono text-emerald-700 font-black">${fmt(ebitda)}</td>
-                    <td class="p-2.5 font-mono text-emerald-700 font-bold">${ebitdaPct.toFixed(1)}%</td>
-                    <td class="p-2.5 font-mono">${fmt(ticket)}</td>
-                    <td class="p-2.5 font-mono text-blue-700 font-bold">${kgTicket.toFixed(2)} Kg</td>
-                    <td class="p-2.5 font-mono text-emerald-700 font-bold">${roiMkt.toFixed(1)}x</td>
-                    <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Auditado</span></td>
+                html += `
+                    <tr class="hover:bg-slate-50 border-b border-slate-100 text-[11px]">
+                        <td class="p-2 border"><input type="text" value="${f.plan}" onchange="editarPlanGeneral(${index}, 'plan', this.value)" class="w-full bg-transparent border-0 font-bold text-slate-700"></td>
+                        <td class="p-2 border text-center font-bold text-slate-500">${f.num}</td>
+                        <td class="p-2 border"><input type="text" value="${f.accion}" onchange="editarPlanGeneral(${index}, 'accion', this.value)" class="w-full bg-transparent border-0"></td>
+                        <td class="p-2 border text-right"><input type="number" value="${f.invEst}" onchange="editarPlanGeneral(${index}, 'invEst', this.value)" class="w-full bg-transparent border-0 text-right font-mono"></td>
+                        <td class="p-2 border text-right"><input type="number" value="${f.invReal}" onchange="editarPlanGeneral(${index}, 'invReal', this.value)" class="w-full bg-transparent border-0 text-right font-mono"></td>
+                        <td class="p-2 border text-center ${estiloAvance}">${avance.toFixed(0)}%</td>
+                        <td class="p-2 border"><input type="text" value="${f.nota}" onchange="editarPlanGeneral(${index}, 'nota', this.value)" class="w-full bg-transparent border-0"></td>
+                        <td class="p-2 border text-center"><button onclick="eliminarFilaPlanGeneral(${index})" class="text-red-500 hover:text-red-700 font-bold"><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
                 `;
-                tbody.appendChild(tr);
             });
+            tbody.innerHTML = html;
+            document.getElementById('lblCantRegistrosPlan').innerText = `${estructuraPlanGeneral.length} Registros`;
         }
 
-        function renderizarGraficos(historial, periodoSeleccionado) {
-            const ctx1 = document.getElementById('chartEvolucion').getContext('2d');
-            const ctx2 = document.getElementById('chartRoi').getContext('2d');
-            const ctx3 = document.getElementById('chartEbitda').getContext('2d');
-            const ctx1c = document.getElementById('chartEvolucionCopy').getContext('2d');
-            const ctx3c = document.getElementById('chartEbitdaCopy').getContext('2d');
-
-            if (chartEvolucionInstance) chartEvolucionInstance.destroy();
-            if (chartRoiInstance) chartRoiInstance.destroy();
-            if (chartEbitdaInstance) chartEbitdaInstance.destroy();
-            if (chartEvolucionCopyInstance) chartEvolucionCopyInstance.destroy();
-            if (chartEbitdaCopyInstance) chartEbitdaCopyInstance.destroy();
-
-            const labels = historial.map(h => h.mes);
-            const ventas = historial.map(h => h.ventas);
-            const kilos = historial.map(h => h.kilos);
-            const roiVals = historial.map(h => calcularRoiRegistro(h));
-            const ebitdaVals = historial.map(h => calcularEbitdaRegistro(h).ebitda);
-            const ebitdaPctVals = historial.map(h => calcularEbitdaRegistro(h).ebitdaPct);
-
-            chartEvolucionInstance = new Chart(ctx1, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'Ventas ($)', data: ventas, backgroundColor: 'rgba(37, 99, 235, 0.8)', yAxisID: 'y', borderRadius: 6 },
-                        { label: 'Volumen (Kg)', data: kilos, type: 'line', borderColor: '#10b981', backgroundColor: '#10b981', yAxisID: 'y1', tension: 0.3 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { type: 'linear', position: 'left', ticks: { callback: v => '$' + (v/1000000).toFixed(1) + 'M' } },
-                        y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v + ' Kg' } }
-                    }
-                }
-            });
-
-            chartRoiInstance = new Chart(ctx2, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{ label: 'ROI MKT (x)', data: roiVals, backgroundColor: 'rgba(59, 130, 246, 0.8)', borderRadius: 6 }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, ticks: { callback: v => v + 'x' } } }
-                }
-            });
-
-            chartEbitdaInstance = new Chart(ctx3, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'EBITDA ($)', data: ebitdaVals, backgroundColor: 'rgba(16, 185, 129, 0.8)', yAxisID: 'y', borderRadius: 6 },
-                        { label: 'Margen EBITDA (%)', data: ebitdaPctVals, type: 'line', borderColor: '#f59e0b', backgroundColor: '#f59e0b', yAxisID: 'y1', tension: 0.3 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { type: 'linear', position: 'left', ticks: { callback: v => '$' + (v/1000000).toFixed(1) + 'M' } },
-                        y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } }
-                    }
-                }
-            });
-
-            chartEvolucionCopyInstance = new Chart(ctx1c, {
-                type: 'bar',
-                data: chartEvolucionInstance.data,
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-            });
-
-            chartEbitdaCopyInstance = new Chart(ctx3c, {
-                type: 'bar',
-                data: chartEbitdaInstance.data,
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-            });
-
-            const ult = historial[historial.length - 1];
-            const { ebitda, ebitdaPct } = calcularEbitdaRegistro(ult);
-            const roiUlt = calcularRoiRegistro(ult);
-            
-            document.getElementById('insightEvolucion').innerText = `Tendencia positiva sostenida. El último período registró ${fmt(ult.ventas)} con un volumen despachado de ${fmtKg(ult.kilos)}.`;
-            document.getElementById('insightRoi').innerText = `El último retorno promocional registrado es de ${roiUlt.toFixed(1)}x, cumpliendo con los estándares de eficiencia.`;
-            document.getElementById('insightEbitda').innerText = `EBITDA operativo de ${fmt(ebitda)} (${ebitdaPct.toFixed(1)}% sobre ventas), superando el umbral mínimo de rentabilidad.`;
+        function editarPlanGeneral(index, campo, valor) {
+            if (campo === 'invEst' || campo === 'invReal') {
+                estructuraPlanGeneral[index][campo] = parseFloat(valor) || 0;
+            } else {
+                estructuraPlanGeneral[index][campo] = valor;
+            }
+            actualizarTablaPlanGeneral();
         }
 
-        function generarInformeIA() {
-            const franqKey = document.getElementById('selectFranquicia').value;
-            const datosFranq = DB_FRANQUICIAS[franqKey];
-            const periodo = document.getElementById('selectPeriodo').value;
-            if (!datosFranq) return;
+        function agregarFilaPlanGeneral() {
+            if (estructuraPlanGeneral.length >= 20) {
+                alert('Límite máximo de registros alcanzado.');
+                return;
+            }
+            const nuevoNum = (estructuraPlanGeneral.length + 1).toString();
+            estructuraPlanGeneral.push({ plan: 'Nuevo Eje', num: nuevoNum, eje: 'OPERATIVO', accion: 'Describa la acción estratégica...', invEst: 500000, invReal: 500000, nota: 'Pendiente de ejecución' });
+            actualizarTablaPlanGeneral();
+        }
 
-            document.getElementById('rptFranqNombre').innerText = datosFranq.nombre;
-            document.getElementById('rptPeriodo').innerText = periodo;
-            document.getElementById('report-date').innerText = new Date().toLocaleDateString('es-AR');
+        function eliminarFilaPlanGeneral(index) {
+            estructuraPlanGeneral.splice(index, 1);
+            estructuraPlanGeneral.forEach((item, idx) => { item.num = (idx + 1).toString(); });
+            actualizarTablaPlanGeneral();
+        }
 
-            let reg = periodo === 'TODOS' ? datosFranq.historial[datosFranq.historial.length - 1] : (datosFranq.historial.find(h => h.mes === periodo) || datosFranq.historial[datosFranq.historial.length - 1]);
-            const { ebitda, ebitdaPct } = calcularEbitdaRegistro(reg);
-            const roiMkt = calcularRoiRegistro(reg);
-
-            document.getElementById('sync-plan-summary').innerHTML = `
-                <p><strong>Estado del Plan General:</strong> Se encuentran activos ${estructuraPlanGeneral.length} ejes de gestión y control operativo.</p>
-                <p><strong>Parámetros Estructurales:</strong> Superficie operativa mínima de ${datosFranq.inputData.superficie_minima_m2 || 80} m², dotación promedio de ${datosFranq.inputData.personal_promedio || 6} colaboradores y plazo estimado de repago (Payback) de ${datosFranq.inputData.plazo_retorno_meses || 24} meses.</p>
-            `;
-
-            document.getElementById('sync-comercial-summary').innerHTML = `
-                <p><strong>Volumen y Facturación:</strong> Facturación de ${fmt(reg.ventas)} con un despacho de ${fmtKg(reg.kilos)}.</p>
-                <p><strong>Precio Medio y Ticket:</strong> Precio promedio de ${fmt(reg.kilos > 0 ? reg.ventas / reg.kilos : 0)} / Kg. Ticket promedio de ${fmt(reg.tickets > 0 ? reg.ventas / reg.tickets : 0)} con un promedio de ${(reg.tickets > 0 ? reg.kilos / reg.tickets : 0).toFixed(2)} Kg por ticket.</p>
-            `;
-
-            document.getElementById('sync-ebitda-summary').innerHTML = `
-                <p><strong>Estructura de Costos y Utilidad:</strong> CMV de ${fmt(reg.cmv)}. Gastos fijos operativos cubiertos con una masa salarial y de alquileres controlada.</p>
-                <p><strong>EBITDA Generado:</strong> EBITDA operativo de <strong>${fmt(ebitda)}</strong>, representando un margen de <strong>${ebitdaPct.toFixed(1)}%</strong> sobre las ventas netas.</p>
-            `;
-
-            document.getElementById('sync-lift-summary').innerHTML = `
-                <p><strong>Retorno Promocional:</strong> Multiplicador ROI de ${roiMkt.toFixed(1)}x medido sobre el margen bruto incremental neto.</p>
-                <p><strong>Canibalización:</strong> El efecto sustitución sobre productos secundarios se encuentra acotado gracias a la correcta segmentación de precios.</p>
-            `;
-
-            document.getElementById('focoMixSync').innerText = `Venta cruzada estable. Impulsar la rotación de potes familiares de 1L en horarios vespertinos en ${datosFranq.nombre}.`;
-            document.getElementById('focoFijosSync').innerText = `Monitoreo estricto del consumo energético en cámaras de frío y optimización de fletes logísticos.`;
+        function actualizarParametrosOperativosManuales() {
+            // Sincronización de inputs operativos
         }
 
         function generarInsightsFODA() {
             actualizarFodaActual();
             const franqKey = document.getElementById('selectFranquicia').value;
             const datosFranq = DB_FRANQUICIAS[franqKey];
-            if (!datosFranq || !datosFranq.foda) return;
+            const foda = datosFranq.foda;
 
-            const container = document.getElementById('contenidoInsightsFODA');
-            container.innerHTML = `
-                <p><strong>Análisis Cruzado para ${datosFranq.nombre}:</strong></p>
-                <p>• <strong>Estrategia FO (Fortalezas + Oportunidades):</strong> Aprovechar el sólido posicionamiento de marca y ubicación para potenciar la venta nocturna mediante canales de delivery y alianzas corporativas en la zona.</p>
-                <p>• <strong>Estrategia DO (Debilidades + Oportunidades):</strong> Mitigar la rotación de personal y los costos de alquiler incrementando la venta cruzada de postres congelados de mayor margen unitario.</p>
-                <p>• <strong>Estrategia FA (Fortalezas + Amenazas):</strong> Defender la cuota de mercado frente a competidores zonales mediante estandarización de calidad y promociones geolocalizadas.</p>
-                <p>• <strong>Estrategia DA (Debilidades + Amenazas):</strong> Establecer un control riguroso sobre las tarifas eléctricas y costos fijos de conservación en frío para proteger el margen EBITDA operativo.</p>
+            const contenedor = document.getElementById('contenidoInsightsFODA');
+            contenedor.innerHTML = `
+                <div class="space-y-3">
+                    <p class="text-white font-semibold">Análisis Cruzado Inteligente para <span class="text-amber-400">${datosFranq.nombre}</span>:</p>
+                    <div class="p-3 bg-slate-800 rounded-lg border border-slate-700 space-y-1">
+                        <p class="text-emerald-400 font-bold">1. Estrategia FO (Maximizar Fortalezas con Oportunidades):</p>
+                        <p class="text-slate-300">Aprovechar el posicionamiento de marca consolidado y el flujo peatonal para potenciar la venta nocturna de delivery y postres familiares congelados.</p>
+                    </div>
+                    <div class="p-3 bg-slate-800 rounded-lg border border-slate-700 space-y-1">
+                        <p class="text-amber-400 font-bold">2. Estrategia FA (Mitigar Amenazas usando Fortalezas):</p>
+                        <p class="text-slate-300">Frente a la competencia local y los costos tarifarios de energía, robustecer la eficiencia de los pozos de frío e implementar programas de fidelización en mostrador.</p>
+                    </div>
+                    <div class="p-3 bg-slate-800 rounded-lg border border-slate-700 space-y-1">
+                        <p class="text-blue-400 font-bold">3. Plan de Acción Inmediato:</p>
+                        <p class="text-slate-300">Supervisar la rotación de personal operativo en horarios pico y optimizar las campañas de marketing geolocalizado en un radio de 3 km.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generarInformeIA() {
+            const franqKey = document.getElementById('selectFranquicia').value;
+            const periodo = document.getElementById('selectPeriodo').value;
+            const datosFranq = DB_FRANQUICIAS[franqKey];
+            if (!datosFranq) return;
+
+            document.getElementById('rptFranqNombre').innerText = datosFranq.nombre;
+            document.getElementById('rptPeriodo').innerText = periodo;
+            const ahora = new Date();
+            document.getElementById('report-date').innerText = ahora.toLocaleDateString('es-AR') + ' ' + ahora.toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'});
+
+            let registro = datosFranq.historial[datosFranq.historial.length - 1];
+            const mb = registro.ventas - registro.cmv;
+            const mc = mb - (registro.comisiones + registro.logistica);
+            const gf = registro.salarios + registro.alquiler + registro.servicios + registro.canon + (registro.otros || registro.other || 0);
+            const { ebitda, ebitdaPct } = calcularEbitdaRegistro(registro);
+
+            document.getElementById('sync-plan-summary').innerHTML = `
+                <p><strong>Estado del Plan General:</strong> Se encuentran registradas ${estructuraPlanGeneral.length} acciones operativas e infraestructura con un control riguroso de desviación presupuestaria e inversión real.</p>
+            `;
+            document.getElementById('sync-comercial-summary').innerHTML = `
+                <p><strong>Desempeño Comercial:</strong> Facturación de ${fmt(registro.ventas)} con un volumen despachado de ${fmtKg(registro.kilos)}. Ticket promedio de ${fmt(registro.tickets > 0 ? registro.ventas/registro.tickets : 0)}.</p>
+            `;
+            document.getElementById('sync-ebitda-summary').innerHTML = `
+                <p><strong>Estructura Financiera:</strong> Margen bruto operativo de ${fmt(mb)}. Gastos fijos totales de ${fmt(gf)}. EBITDA Operativo calculado en ${fmt(ebitda)} (${ebitdaPct.toFixed(1)}% sobre ventas).</p>
+            `;
+            document.getElementById('sync-lift-summary').innerHTML = `
+                <p><strong>Evaluación Promocional:</strong> Campañas optimizadas con control estricto de canibalización sobre productos sustitutos para garantizar retorno positivo.</p>
             `;
         }
 
         function descargarPlantilla() {
             const wb = XLSX.utils.book_new();
             const wsData = [
-                ["cod_franquicia", "nombre_franquicia", "periodo", "ventas", "kilos", "tickets", "vol_base_kg", "cmv", "salarios", "alquiler", "servicios", "comisiones", "logistica", "canon", "otros"],
-                ["GRI-1042", "Grido 1042 - Córdoba Centro", "2026-10", 20000000, 1950, 4000, 1500, 10200000, 2700000, 1400000, 750000, 400000, 250000, 600000, 450000]
+                ["Franquicia (Código - Nombre - Ciudad)", "Período", "Ventas ($)", "Volumen (Kg)", "Tickets", "Vol. Base (Kg)", "CMV ($)", "Salarios ($)", "Alquiler ($)", "Servicios ($)", "Comis. POS ($)", "Flete Frío ($)", "Canon ($)", "Otros ($)"],
+                ["GRI-9999 - Grido 9999 - Sucursal Modelo - Córdoba", "2026-09", 19000000, 1900, 3870, 1500, 9800000, 2600000, 1400000, 730000, 380000, 240000, 570000, 420000]
             ];
             const ws = XLSX.utils.aoa_to_sheet(wsData);
-            XLSX.utils.book_append_sheet(wb, ws, "Plantilla Primaria");
-            XLSX.writeFile(wb, "Plantilla_Primaria_Grido_Sin_EBITDA.xlsx");
+            XLSX.utils.book_append_sheet(wb, ws, "Plantilla_Primaria");
+            XLSX.writeFile(wb, "Plantilla_Ingesta_Grido_v11.3.xlsx");
         }
 
-        function procesarArchivoExcel(event) {
-            const file = event.target.files[0];
+        function procesarArchivoExcel(e) {
+            const file = e.target.files[0];
             if (!file) return;
 
             const reader = new FileReader();
@@ -1783,97 +1839,113 @@
                     const json = XLSX.utils.sheet_to_json(worksheet);
 
                     if (!json || json.length === 0) {
-                        alert("El archivo Excel está vacío o no tiene el formato correcto.");
+                        alert('El archivo Excel no contiene registros válidos.');
                         return;
                     }
 
-                    const reg0 = json[0];
-                    const franqCode = reg0.cod_franquicia || 'GRI-CUSTOM';
-                    const franqName = reg0.nombre_franquicia || 'Grido (Importado)';
+                    let historialCustom = [];
+                    let nombreFranqCustom = 'Grido Importado (Excel)';
+                    let codigoCustom = 'GRI-CUSTOM';
+                    let ciudadCustom = 'Personalizada';
+                    let identificadorCompletoCustom = 'GRI-CUSTOM - Grido Importado (Excel) - Personalizada';
 
-                    let historialCustom = json.map(row => ({
-                        mes: row.periodo || '2026-10',
-                        ventas: parseFloat(row.ventas) || 0,
-                        kilos: parseFloat(row.kilos) || 0,
-                        tickets: parseFloat(row.tickets) || 0,
-                        volBaseExcel: parseFloat(row.vol_base_kg) || 1200,
-                        cmv: parseFloat(row.cmv) || 0,
-                        salarios: parseFloat(row.salarios) || 0,
-                        alquiler: parseFloat(row.alquiler) || 0,
-                        servicios: parseFloat(row.servicios) || 0,
-                        comisiones: parseFloat(row.comisiones) || 0,
-                        logistica: parseFloat(row.logistica) || 0,
-                        canon: parseFloat(row.canon) || 0,
-                        otros: parseFloat(row.otros) || 0,
-                        inversion: parseFloat(row.canon) || 500000
-                    }));
+                    json.forEach(row => {
+                        const franqCampo = row["Franquicia (Código - Nombre - Ciudad)"] || row["Franquicia"] || row["Nombre Franquicia"] || row["Cód. Franq"] || 'GRI-CUSTOM - Grido Importado (Excel) - Personalizada';
+                        identificadorCompletoCustom = franqCampo;
+                        
+                        // Intentar separar el campo unificado si tiene formato estructurado
+                        const partes = franqCampo.split('-');
+                        if (partes.length >= 2) {
+                            codigoCustom = partes[0].trim();
+                            nombreFranqCustom = partes[1].trim();
+                            if (partes.length >= 3) ciudadCustom = partes[2].trim();
+                        }
+
+                        historialCustom.push({
+                            mes: row["Período"] || row["Periodo"] || '2026-09',
+                            ventas: parseFloat(row["Ventas ($)"] || row["Ventas"] || 0),
+                            kilos: parseFloat(row["Volumen (Kg)"] || row["Kilos"] || 0),
+                            cmv: parseFloat(row["CMV ($)"] || row["CMV"] || 0),
+                            salarios: parseFloat(row["Salarios ($)"] || row["Salarios"] || 0),
+                            alquiler: parseFloat(row["Alquiler ($)"] || row["Alquiler"] || 0),
+                            servicios: parseFloat(row["Servicios ($)"] || row["Servicios"] || 0),
+                            comisiones: parseFloat(row["Comis. POS ($)"] || row["Comisiones"] || 0),
+                            logistica: parseFloat(row["Flete Frío ($)"] || row["Logistica"] || 0),
+                            canon: parseFloat(row["Canon ($)"] || row["Canon"] || 0),
+                            otros: parseFloat(row["Otros ($)"] || row["Otros"] || row["other"] || 0),
+                            tickets: parseFloat(row["Tickets"] || 0),
+                            volBaseExcel: parseFloat(row["Vol. Base (Kg)"] || row["Volumen Base"] || 1500),
+                            inversion: parseFloat(row["Canon ($)"] || 500000)
+                        });
+                    });
 
                     DB_FRANQUICIAS['GRI-CUSTOM'] = {
-                        nombre: franqName,
-                        lineaBaseKg: 1200,
-                        origenBase: 'Excel Importado',
+                        codigo: codigoCustom,
+                        nombre: nombreFranqCustom,
+                        ciudad: ciudadCustom,
+                        identificadorCompleto: identificadorCompletoCustom,
+                        lineaBaseKg: historialCustom[0].volBaseExcel || 1500,
+                        origenBase: 'Excel Importado Directo',
                         lat: -31.4135,
                         lon: -64.1810,
                         foda: {
-                            fortalezas: "1. Datos contables importados desde planilla externa.\n2. Estandarización de variables operativas.",
-                            debilidades: "1. Monitoreo dependiente de la actualización periódica del archivo fuente.",
-                            oportunidades: "1. Explotación de nuevos canales de venta directa.",
-                            amenazas: "1. Variaciones en costos de reposición."
+                            fortalezas: "1. Datos personalizados cargados mediante planilla contable.\n2. Estructura de costos adaptada al punto de venta.",
+                            debilidades: "1. Requiere auditoría mensual de variables.",
+                            oportunidades: "1. Expansión comercial según datos analizados.",
+                            amenazas: "1. Monitoreo constante del contexto económico."
                         },
-                        inputData: { nombre_franquicia: franqName, superficie_minima_m2: 80, personal_promedio: 6, plazo_retorno_meses: 24, margen_operativo_promedio: 22.0 },
+                        inputData: { nombre_franquicia: identificadorCompletoCustom, superficie_minima_m2: 80, personal_promedio: 6, plazo_retorno_meses: 24, margen_operativo_promedio: 22.5 },
                         historial: historialCustom
                     };
 
-                    const optCustom = document.getElementById('optCustomFranq');
-                    optCustom.disabled = false;
-                    optCustom.innerText = franqName;
+                    actualizarSelectorFranquiciasUI();
                     document.getElementById('selectFranquicia').value = 'GRI-CUSTOM';
+                    document.getElementById('optCustomFranq').disabled = false;
+                    document.getElementById('optCustomFranq').innerText = identificadorCompletoCustom;
 
-                    const msg = document.getElementById('msgCarga');
-                    msg.className = "mt-4 p-3 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800";
-                    msg.innerText = `[ÉXITO] Archivo procesado correctamente. Se cargaron ${json.length} registros para ${franqName}. EBITDA calculado automáticamente.`;
-                    msg.classList.remove('hidden');
+                    // Llenar tabla previsualización
+                    let htmlPrev = '';
+                    historialCustom.forEach(h => {
+                        const { ebitda, ebitdaPct } = calcularEbitdaRegistro(h);
+                        htmlPrev += `
+                            <tr class="border-b hover:bg-slate-50">
+                                <td class="p-2 border-r font-bold">${identificadorCompletoCustom}</td>
+                                <td class="p-2 border-r">${h.mes}</td>
+                                <td class="p-2 border-r">${fmt(h.ventas)}</td>
+                                <td class="p-2 border-r">${fmtKg(h.kilos)}</td>
+                                <td class="p-2 border-r">${h.tickets}</td>
+                                <td class="p-2 border-r text-blue-700 font-bold">${h.volBaseExcel} Kg</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.cmv)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.salarios)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.alquiler)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.servicios)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.comisiones)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.logistica)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.canon)}</td>
+                                <td class="p-2 border-r text-red-600">${fmt(h.otros)}</td>
+                                <td class="p-2 border-r text-emerald-800 font-black bg-emerald-100">${fmt(ebitda)}</td>
+                                <td class="p-2 text-emerald-800 font-black bg-emerald-100">${ebitdaPct.toFixed(1)}%</td>
+                            </tr>
+                        `;
+                    });
+                    document.getElementById('tablaPrevisualización').innerHTML = htmlPrev;
+                    document.getElementById('lblRegistrosCargados').innerText = `${historialCustom.length} registros cargados y procesados`;
 
-                    poblarTablaPrevisualizacion(historialCustom);
+                    const msgCarga = document.getElementById('msgCarga');
+                    msgCarga.className = 'mt-4 p-3 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300';
+                    msgCarga.innerText = `[EXITO] Archivo procesado correctamente. EBITDA calculado en forma autónoma para ${identificadorCompletoCustom}.`;
+                    msgCarga.classList.remove('hidden');
+
                     alCambiarFranquicia();
                 } catch (err) {
                     console.error(err);
-                    alert("Error al procesar el archivo Excel. Verifique que la estructura coincida con la plantilla.");
+                    const msgCarga = document.getElementById('msgCarga');
+                    msgCarga.className = 'mt-4 p-3 rounded-lg text-xs font-semibold bg-red-100 text-red-800 border border-red-300';
+                    msgCarga.innerText = `[ERROR] No se pudo procesar el archivo. Verifique el formato de las columnas.`;
+                    msgCarga.classList.remove('hidden');
                 }
             };
             reader.readAsArrayBuffer(file);
-        }
-
-        function poblarTablaPrevisualizacion(historial) {
-            const tbody = document.getElementById('tablaPrevisualización');
-            tbody.innerHTML = '';
-            document.getElementById('lblRegistrosCargados').innerText = `${historial.length} registros mostrados`;
-
-            historial.forEach(h => {
-                const { ebitda, ebitdaPct } = calcularEbitdaRegistro(h);
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50";
-                tr.innerHTML = `
-                    <td class="p-2 border-r">GRI-CUSTOM</td>
-                    <td class="p-2 border-r">Grido Custom</td>
-                    <td class="p-2 border-r font-bold">${h.mes}</td>
-                    <td class="p-2 border-r">${fmt(h.ventas)}</td>
-                    <td class="p-2 border-r">${fmtKg(h.kilos)}</td>
-                    <td class="p-2 border-r">${h.tickets}</td>
-                    <td class="p-2 border-r text-blue-700 font-bold">${h.volBaseExcel} Kg</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.cmv)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.salarios)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.alquiler)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.servicios)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.comisiones)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.logistica)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.canon)}</td>
-                    <td class="p-2 border-r text-red-600">${fmt(h.otros || h.other || 0)}</td>
-                    <td class="p-2 border-r font-black text-emerald-800 bg-emerald-50">${fmt(ebitda)}</td>
-                    <td class="p-2 font-black text-emerald-800 bg-emerald-50">${ebitdaPct.toFixed(1)}%</td>
-                `;
-                tbody.appendChild(tr);
-            });
         }
 
         function exportarConsolidadoPDF() {
