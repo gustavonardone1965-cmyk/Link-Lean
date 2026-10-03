@@ -193,6 +193,18 @@ tr.fr td:nth-child(2){color:var(--red);font-weight:600}
 .p2 .kpi-row td{padding:1mm 1.6mm}
 .p2 .pend td:nth-child(3){white-space:nowrap}
 .p2 .pend .prog{width:10mm}
+.cn-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;margin-bottom:2.4mm}
+.cn-kpis div{border-left:3px solid var(--teal);background:var(--ice);border-radius:0 1.6mm 1.6mm 0;padding:1.6mm 2mm}
+.cn-kpis span{display:block;font-size:7.2pt;color:var(--muted);line-height:1.2}
+.cn-kpis b{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:13pt;color:var(--navy);line-height:1.15;margin:.6mm 0 .3mm}
+.cn-kpis em{display:block;font-style:normal;font-size:7pt;color:var(--muted);line-height:1.2}
+.cn-bar{display:flex;height:6mm;border-radius:1.4mm;overflow:hidden;font-size:7.4pt;font-weight:600;margin-bottom:3mm}
+.cn-bar span{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap}
+.cn-bar .b1{background:var(--teal)}.cn-bar .b2{background:#7fb3c8}.cn-bar .b3{background:#b8c6d4;color:#1c2533}
+.cn-h3{font-size:9pt;margin:0 0 1mm}
+table.cn-tbl{font-size:8pt;margin-bottom:1mm}
+table.cn-tbl th,table.cn-tbl td{padding:1mm 1.6mm}
+table.cn-tbl .r{text-align:right;white-space:nowrap}
 @media print{.btn-inicio{display:none}}
 </style>
 </head>
@@ -225,7 +237,7 @@ tr.fr td:nth-child(2){color:var(--red);font-weight:600}
     <div class="route-foot">
       <div class="fig"><div class="n">12 de 20</div><div class="t">acciones del plan completas; 7 en curso y 1 por empezar</div></div>
       <div class="fig"><div class="n">328</div><div class="t">artículos relevados y clasificados (134 son de venta)</div></div>
-      <div class="fig"><div class="n">USD&nbsp;870</div><div class="t">ahorro anual estimado de energía con el nuevo orden de la cámara (4,2&nbsp;%)</div></div>
+      <div class="fig"><div class="n">USD&nbsp;874</div><div class="t">ahorro anual estimado de energía con el nuevo orden de la cámara (4,3&nbsp;% de la factura anual)</div></div>
       <div class="fig"><div class="n">16 días</div><div class="t">de medición diaria de tres indicadores de servicio en el pizarrón</div></div>
     </div>
   </div>
@@ -277,7 +289,7 @@ tr.fr td:nth-child(2){color:var(--red);font-weight:600}
     </div>
   </div>
 
-  <footer><span>Programa Lean piloto Grido Vélez Sarsfield · Informe semanas 1 a 5</span><span>Página 1 de 3</span></footer>
+  <footer><span>Programa Lean piloto Grido Vélez Sarsfield · Informe semanas 1 a 5</span><span>Página 1 de 4</span></footer>
 </section>
 
 <!-- ===================== PÁGINA 2 ===================== -->
@@ -346,7 +358,7 @@ tr.fr td:nth-child(2){color:var(--red);font-weight:600}
   </div>
 
 
-  <footer><span>Fuentes: bitácora del programa semanas 1 a 5 y tablero de gestión del programa (semana 5)</span><span>Página 2 de 3</span></footer>
+  <footer><span>Fuentes: bitácora del programa semanas 1 a 5 y tablero de gestión del programa (semana 5)</span><span>Página 2 de 4</span></footer>
 </section>
 
 <!-- ===================== PÁGINA 3: ANEXO ===================== -->
@@ -354,19 +366,49 @@ tr.fr td:nth-child(2){color:var(--red);font-weight:600}
   <div class="masthead" style="padding-bottom:2.6mm;margin-bottom:2mm">
     <div>
       <h1>Anexo: soporte del nuevo orden de la cámara de frío</h1>
-      <p class="intro"><strong>Por qué se ahorra energía (USD&nbsp;870 al año estimados).</strong> Los productos que más se piden pasan al nivel del medio, a la altura de la mano: se encuentran y se retiran más rápido, la puerta queda abierta menos tiempo y entra menos aire caliente. Los bultos más densos van abajo y funcionan como una reserva de frío que estabiliza la temperatura, así el equipo arranca menos veces. Arriba, junto a los evaporadores, quedan los de menor movimiento, que casi no se tocan.</p>
+      <p class="intro"><strong>Por qué se ahorra energía: USD&nbsp;874 al año estimados, el 4,3&nbsp;% de la factura anual de EPEC (USD&nbsp;20.145).</strong> Los productos que más se piden quedan a la altura de la mano: se retiran más rápido, la puerta se abre menos tiempo y entra menos aire caliente. Los bultos más densos funcionan como reserva de frío y estabilizan la temperatura. <strong>Cálculo:</strong> 5&nbsp;% del gasto de energía de los productos ubicados en los niveles 1 y 2 (USD&nbsp;687) más 10&nbsp;% del de los ubicados en el nivel 3 (USD&nbsp;187).</p>
     </div>
   </div>
 
   <h2>1. Plano de la cámara: cómo está hoy y cómo proponemos ordenarla</h2>
   <div class="plans"><div class="plan"><h3>Ubicación actual</h3><div class="floor"><div class="colL"><div class="rack"><b>Rack 3</b><div class="lv"><em>N1</em><div><span class="chip">Tentaciones 1</span></div></div><div class="lv"><em>N2</em><div><span class="chip">Tentaciones 2</span></div></div><div class="lv"><em>N3</em><div><span class="chip">Pizza Jamón y Queso</span><span class="chip">Pizza Muzza</span><span class="chip">Pizza Casera</span><span class="chip">Pizza Cebolla</span><span class="chip">Pizza Integral</span><span class="chip">Mini Pizza</span><span class="chip">Pechuguitas</span><span class="chip">Bastoncitos</span><span class="chip">Empanadas</span><span class="chip">Froodie Wraps</span></div></div></div><div class="rack"><b>Rack 2</b><div class="lv"><em>N1</em><div><span class="chip">Bombón Escocés</span><span class="chip">Bombón Suizo</span><span class="chip">Postre Cassata</span><span class="chip">Postre Almendrado</span><span class="chip">Bombón Frutezza</span><span class="chip">Postre Crocantino</span><span class="chip">Postre Delicia</span><span class="chip">Bombón Crocante</span><span class="chip">Bombón Secreto</span></div></div><div class="lv"><em>N2</em><div><span class="chip">Familiares 1</span><span class="chip">Familiares 2</span><span class="chip">Familiares 3</span><span class="chip">Familiares 4</span></div></div><div class="lv"><em>N3</em><div><span class="empty">(vacío)</span></div></div></div><div class="gran"><b>Rack 1</b><span class="chip g">Granel A</span></div></div><div class="aisle"><span>Pasillo</span></div><div class="colR"><div class="rack"><b>Rack 4</b><div class="lv"><em>N1</em><div><span class="chip">Palitos Bombón</span><span class="chip">Bocaditos</span></div></div><div class="lv"><em>N2</em><div><span class="chip">Palitos Cremoso</span><span class="chip">Palitos Agua</span></div></div><div class="lv"><em>N3</em><div><span class="chip">Tortas</span><span class="chip">Familiares 2*</span><span class="chip">Palitos Agua</span></div></div></div><div class="gran"><b>Rack 5</b><span class="chip g">Granel B</span></div></div></div><div class="doors"><span>Puerta de ingreso</span><span>Puerta de salida</span></div></div><div class="plan"><h3>Propuesta</h3><div class="floor"><div class="colL"><div class="rack"><b>Rack 3</b><div class="lv"><em>N1</em><div><span class="chip mv">Pizza Jamón y Queso</span><span class="chip mv">Pizza Muzza</span><span class="chip mv">Pizza Casera</span><span class="chip mv">Pizza Cebolla</span><span class="chip mv">Mini Pizza</span></div></div><div class="lv"><em>N2</em><div><span class="chip mv">Tentaciones 1</span></div></div><div class="lv"><em>N3</em><div><span class="chip mv">Tentaciones 2</span><span class="chip">Pizza Integral</span><span class="chip">Pechuguitas</span><span class="chip">Bastoncitos</span><span class="chip">Empanadas</span><span class="chip">Froodie Wraps</span></div></div></div><div class="rack"><b>Rack 2</b><div class="lv"><em>N1</em><div><span class="chip">Postre Cassata</span><span class="chip">Postre Delicia</span><span class="chip">Bombón Secreto</span></div></div><div class="lv"><em>N2</em><div><span class="chip mv">Bombón Escocés</span><span class="chip mv">Bombón Crocante</span><span class="chip">Familiares 1</span><span class="chip">Familiares 2</span><span class="chip">Familiares 3</span><span class="chip">Familiares 4</span></div></div><div class="lv"><em>N3</em><div><span class="chip mv">Bombón Suizo</span><span class="chip mv">Postre Almendrado</span><span class="chip mv">Bombón Frutezza</span><span class="chip mv">Postre Crocantino</span></div></div></div><div class="gran"><b>Rack 1</b><span class="chip g">Granel A</span></div></div><div class="aisle"><span>Pasillo</span></div><div class="colR"><div class="rack"><b>Rack 4</b><div class="lv"><em>N1</em><div><span class="chip mv">Palitos Cremoso</span></div></div><div class="lv"><em>N2</em><div><span class="chip mv">Palitos Bombón</span><span class="chip mv">Tortas</span><span class="chip mv">Familiares 2*</span></div></div><div class="lv"><em>N3</em><div><span class="chip mv">Palitos Agua</span><span class="chip mv">Bocaditos</span></div></div></div><div class="gran"><b>Rack 5</b><span class="chip g">Granel B</span></div></div></div><div class="doors"><span>Puerta de ingreso</span><span>Puerta de salida</span></div></div></div>
-  <p class="legend"><span class="chip mv">Así</span> cambia de nivel en la propuesta. Nivel 1: superior, junto a los evaporadores. Nivel 2: intermedio, para el pedido diario. Nivel 3: inferior, masa de frío. Granel A y B, sueltos. (*) Segunda posición de Familiares 2. Esquema no a escala. Cámara: 12,41&nbsp;m² y 25,69&nbsp;m³ interiores; racks: 17,93&nbsp;m³ (69,8&nbsp;%).</p>
+  <p class="legend"><span class="chip mv">Así</span> cambia de nivel en la propuesta. Nivel 1: superior, junto a los evaporadores. Nivel 2: intermedio, para el pedido diario. Nivel 3: inferior, masa de frío. Granel A y B, sueltos. (*) Segunda posición de Familiares 2. Esquema no a escala.</p>
+  <h2>2. La cámara en números: volumen y utilización</h2>
+  <div class="cn-kpis">
+    <div><span>Volumen interior</span><b>25,69&nbsp;m³</b><em>superficie interior 12,41&nbsp;m²</em></div>
+    <div><span>Espacio de racks</span><b>17,93&nbsp;m³</b><em>69,8&nbsp;% del volumen</em></div>
+    <div><span>Producto guardado</span><b>10,18&nbsp;m³</b><em>39,6&nbsp;% del volumen</em></div>
+    <div><span>Aire dentro de los racks</span><b>7,75&nbsp;m³</b><em>43,2&nbsp;% del espacio de racks</em></div>
+    <div><span>Fuera de los racks</span><b>7,76&nbsp;m³</b><em>30,2&nbsp;% del volumen (pasillo y libre)</em></div>
+    <div><span>Utilización de los racks</span><b>56,8&nbsp;%</b><em>producto ÷ espacio de racks</em></div>
+  </div>
+  <div class="cn-bar" role="img" aria-label="Distribución del volumen interior: 39,6 % producto, 30,2 % aire dentro de racks, 30,2 % fuera de racks">
+    <span class="b1" style="width:39.6%">Producto 39,6&nbsp;%</span><span class="b2" style="width:30.2%">Aire en racks 30,2&nbsp;%</span><span class="b3" style="width:30.2%">Fuera de racks 30,2&nbsp;%</span>
+  </div>
+  <h3 class="cn-h3">Estadísticas básicas por producto (32 productos)</h3>
+  <table class="cn-tbl">
+    <thead><tr><th>Indicador</th><th class="r">Media</th><th class="r">Mediana</th><th>Mínimo</th><th>Máximo</th><th class="r">Desvío</th></tr></thead>
+    <tbody>
+      <tr><td>Utilización del espacio asignado (%)</td><td class="r">57,1&nbsp;%</td><td class="r">64,9&nbsp;%</td><td>13,9&nbsp;% (Frizzio Mini Pizza y Bastoncitos)</td><td>87,8&nbsp;% (Bombón Crocante)</td><td class="r">21,9 pp</td></tr>
+      <tr><td>Espacio de rack asignado (m³)</td><td class="r">0,56</td><td class="r">0,16</td><td>0,05 (Postres Crocantino y Delicia)</td><td>2,71 (Granel A)</td><td class="r">0,77</td></tr>
+    </tbody>
+  </table>
+  <p class="legend">10 de los 32 productos usan menos de la mitad del espacio que tienen asignado; solo 3 superan el 80&nbsp;% (Bombón Crocante, Secreto y Escocés). La mediana del espacio asignado es mucho menor que la media porque pocos productos (Granel, Palitos y Tentaciones) concentran la mayor parte del volumen.</p>
 
-  <h2>2. Compras y energía por posición de estante (USD por año, de mayor a menor compra)</h2>
+  <footer><span>Fuentes: matriz de la cámara (Excel del programa). Utilización = volumen máximo de producto ÷ espacio de rack asignado.</span><span>Página 3 de 4</span></footer>
+</section>
+
+<!-- ===================== PÁGINA 4: ANEXO (CONT.) ===================== -->
+<section class="page p3">
+  <div class="masthead" style="padding-bottom:2.6mm;margin-bottom:2mm">
+    <div><h1>Anexo (continuación): compras y energía</h1></div>
+  </div>
+
+  <h2>3. Compras y energía por posición de estante (USD por año, de mayor a menor compra)</h2>
   <div class="rkwrap"><table class="rk"><thead><tr><th>#</th><th>Producto</th><th class="r">Compra</th><th class="r">Energía</th><th></th></tr></thead><tbody><tr class="fa"><td>1</td><td>Familiares 1</td><td class="r">987</td><td class="r">72,5</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>2</td><td>Familiares 2</td><td class="r">987</td><td class="r">72,5</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>3</td><td>Familiares 3</td><td class="r">987</td><td class="r">72,5</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>4</td><td>Familiares 4</td><td class="r">987</td><td class="r">72,5</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>5</td><td>Granel A</td><td class="r">802</td><td class="r">37,1</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>6</td><td>Granel B</td><td class="r">802</td><td class="r">36,2</td><td><span class="dot a"></span></td></tr><tr class="fg"><td>7</td><td>Frizzio Pizza Integral</td><td class="r">654</td><td class="r">19,6</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>8</td><td>Tortas</td><td class="r">645</td><td class="r">7,2</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>9</td><td>Frizzio Pizza Muzza</td><td class="r">629</td><td class="r">9,8</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>10</td><td>Pechuguitas</td><td class="r">625</td><td class="r">19,6</td><td><span class="dot g"></span></td></tr><tr class="fa"><td>11</td><td>Bastoncitos</td><td class="r">625</td><td class="r">39,2</td><td><span class="dot a"></span></td></tr></tbody></table><table class="rk"><thead><tr><th>#</th><th>Producto</th><th class="r">Compra</th><th class="r">Energía</th><th></th></tr></thead><tbody><tr class="fg"><td>12</td><td>Frizzio Pizza Cebolla</td><td class="r">611</td><td class="r">19,6</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>13</td><td>Frizzio Pizza JyQ</td><td class="r">605</td><td class="r">9,8</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>14</td><td>Empanadas</td><td class="r">592</td><td class="r">19,6</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>15</td><td>Palitos Agua</td><td class="r">566</td><td class="r">10,6</td><td><span class="dot g"></span></td></tr><tr class="fg"><td>16</td><td>Frizzio Pizza Casera</td><td class="r">547</td><td class="r">19,6</td><td><span class="dot g"></span></td></tr><tr class="fa"><td>17</td><td>Palitos Bombón</td><td class="r">524</td><td class="r">10,2</td><td><span class="dot a"></span></td></tr><tr class="fr"><td>18</td><td>Bombón Escocés</td><td class="r">444</td><td class="r">35,8</td><td><span class="dot r"></span></td></tr><tr class="fa"><td>19</td><td>Tentaciones 1</td><td class="r">426</td><td class="r">15,9</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>20</td><td>Tentaciones 2</td><td class="r">426</td><td class="r">11,9</td><td><span class="dot a"></span></td></tr><tr class="fr"><td>21</td><td>Bombón Suizo</td><td class="r">420</td><td class="r">39,6</td><td><span class="dot r"></span></td></tr><tr class="fr"><td>22</td><td>Postre Almendrado</td><td class="r">414</td><td class="r">39,6</td><td><span class="dot r"></span></td></tr></tbody></table><table class="rk"><thead><tr><th>#</th><th>Producto</th><th class="r">Compra</th><th class="r">Energía</th><th></th></tr></thead><tbody><tr class="fa"><td>23</td><td>Palitos Cremoso</td><td class="r">411</td><td class="r">10,7</td><td><span class="dot a"></span></td></tr><tr class="fr"><td>24</td><td>Postre Cassata</td><td class="r">370</td><td class="r">39,6</td><td><span class="dot r"></span></td></tr><tr class="fr"><td>25</td><td>Frizzio Mini Pizza</td><td class="r">370</td><td class="r">39,2</td><td><span class="dot r"></span></td></tr><tr class="fr"><td>26</td><td>Bombón Frutezza</td><td class="r">365</td><td class="r">31,7</td><td><span class="dot r"></span></td></tr><tr class="fr"><td>27</td><td>Bombón Crocante</td><td class="r">345</td><td class="r">28,8</td><td><span class="dot r"></span></td></tr><tr class="fa"><td>28</td><td>Bombón Secreto</td><td class="r">307</td><td class="r">26,2</td><td><span class="dot a"></span></td></tr><tr class="fa"><td>29</td><td>Bocaditos</td><td class="r">296</td><td class="r">5,3</td><td><span class="dot a"></span></td></tr><tr class="fr"><td>30</td><td>Postre Crocantino</td><td class="r">280</td><td class="r">28,5</td><td><span class="dot r"></span></td></tr><tr class="fa"><td>31</td><td>Froodie Wraps</td><td class="r">259</td><td class="r">13,1</td><td><span class="dot a"></span></td></tr><tr class="fr"><td>32</td><td>Postre Delicia</td><td class="r">247</td><td class="r">28,5</td><td><span class="dot r"></span></td></tr></tbody></table></div>
   <p class="legend"><span class="key"><i style="background:#1f9d5c"></i>9 muy rentables: más compra y menos energía que la mediana</span><span class="key"><i style="background:#c8412f"></i>9 caras de sostener: lo contrario</span><span class="key"><i style="background:#e3b23c"></i>sin contraste</span></p>
 
-  <h2>3. Energía de la cámara</h2>
+  <h2>4. Energía de la cámara</h2>
   <div class="charts">
     <div>
       <h3>Consumo (kWh) y costo (USD) por factura EPEC</h3>
@@ -380,7 +422,7 @@ tr.fr td:nth-child(2){color:var(--red);font-weight:600}
     </div>
   </div>
 
-  <footer><span>Fuentes: matriz de la cámara (Excel del programa) y facturas EPEC. El ahorro se confirma midiendo antes y después.</span><span>Página 3 de 3</span></footer>
+  <footer><span>Fuentes: matriz de la cámara (Excel del programa) y facturas EPEC. El ahorro se confirma midiendo antes y después.</span><span>Página 4 de 4</span></footer>
 </section>
 
 </body>
